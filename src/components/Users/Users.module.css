@@ -1,0 +1,39 @@
+.container * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.userAvatar {
+    width: 50px;
+}
+
+.container {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 2fr 10fr;
+    margin: 5px;
+}
+
+.avatar, .userInfo {
+    background-color: skyblue;
+    display: grid;
+}
+
+.avatar {
+    place-items: center;
+}
+
+.userInfo {
+    grid-template-columns: 6fr 2fr;
+    gap: 5px;
+}
+
+.userInfo * {
+    display: grid;
+    background-color: lightblue;
+}
+
+.selectedPage {
+    font-weight: bold;
+}

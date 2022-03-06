@@ -1,0 +1,75 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 4fr 12fr;
+    height: 90vh;
+}
+
+.dialogsItems {
+    padding: 10px;
+    overflow-y: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+}
+
+.messageArea {
+    border-radius: 0 10px 10px 0;
+    height: 90vh;
+    background-color: rgb(231, 218, 255);
+    display: grid;
+    grid-template-rows: 12fr 1fr;
+}
+
+.messages {
+    overflow-y: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+}
+
+.enterArea {
+    display: grid;
+    border-radius: 10px;
+    margin: 10px;
+    grid-template-columns: 9fr 1fr;
+    background-color: rgb(237, 231, 255);
+    box-shadow: 0 0 5px rgb(168, 148, 230);
+}
+
+.enterArea textarea {
+    outline: none;
+    resize: none;
+    border-style: none;
+    background: transparent;
+    color: blueviolet;
+    padding: 10px;
+    font-family: sans-serif;
+    scrollbar-width: none;
+}
+
+.enterArea button {
+    outline: none;
+    resize: none;
+    border-style: none;
+    background: transparent;
+}
+
+.enterArea button img {
+    width: 30%;
+}
+
+.incoming, .outgoing {
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    height: auto;
+    word-wrap: break-word;
+}
+
+.outgoing {
+    background-color: rgb(255, 255, 255);
+    color: rgb(116, 59, 192);
+}
+
+.incoming {
+    background-color: rgb(116, 59, 192);
+    color: rgb(255, 255, 255);
+}

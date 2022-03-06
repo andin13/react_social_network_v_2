@@ -1,0 +1,6 @@
+.profileDiv {
+    height: 90vh;
+    overflow-y: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+}

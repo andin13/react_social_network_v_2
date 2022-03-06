@@ -1,0 +1,19 @@
+.header {
+    grid-area: h;
+    background-color: rgb(116, 59, 192);
+    width: 100%;
+    position: fixed;
+    box-shadow: 0 0 10px rgb(78, 49, 167);
+    display: grid;
+    grid-template-columns: 2fr 2fr 13fr 2fr;
+}
+
+.logo {
+    display: grid;
+    grid-column-start: 2;
+    width: 80px;
+}
+
+.logo img {
+    height: 8vh;
+}

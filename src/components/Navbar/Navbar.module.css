@@ -1,0 +1,28 @@
+.nav {
+    grid-area: n;
+    border-radius: 10px;
+    background-color: rgb(198, 168, 255);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgb(190, 168, 255);
+
+}
+
+.item {
+    color: white;
+    text-decoration: none;
+    padding: 5%;
+}
+
+.active {
+    color: rgb(116, 59, 192);
+    text-decoration: none;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.FL {
+    margin-top: 50px;
+}

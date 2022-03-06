@@ -1,0 +1,24 @@
+.postBlock {
+    padding: 10px;
+}
+
+.postCreationBlock {
+    display: grid;
+}
+
+.posts {
+    margin-top: 10px;
+}
+
+.postCreation {
+    outline: none;
+    resize: none;
+    border-style: none;
+    border-radius: 5px;
+    width: 80%;
+    height: 60px;
+    box-shadow: 0 0 5px rgb(190, 168, 255);
+    background-color: #f5f1ff;
+    display: grid;
+    justify-self: center;
+}
