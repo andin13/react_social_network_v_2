@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import s from './Users.module.css';
 
 const Users = (props) => {
@@ -22,10 +23,12 @@ const Users = (props) => {
                     <div className={s.container}>
                         <div className={s.avatar}>
                             <div>
-                                <img
+                            <NavLink to={'/profile/' + u.id}>
+                            <img
                                     src={'https://cdn4.iconfinder.com/data/icons/web-app-flat-circular-icons-set/64/Iconos_Redondos_Flat_Usuario_Icn-512.png'}
                                     alt='img'
                                     className={s.userAvatar}/>
+                            </NavLink>
                             </div>
                             <div>
                                 <button onClick={() => props.follow(u.id)}>
