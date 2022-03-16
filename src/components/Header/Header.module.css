@@ -17,3 +17,15 @@
 .logo img {
     height: 8vh;
 }
+
+.loginBlock {
+    display: grid;
+    justify-self: end;
+    align-self: center;
+    color: white;
+}
+
+.loginBlock a {
+    color: white;
+    text-decoration: none;
+}

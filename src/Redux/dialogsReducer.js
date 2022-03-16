@@ -18,7 +18,7 @@ let initialState = {
         {id: 4, message: 'Hi', incoming: true},
 
     ],
-    textArea: 'Default'
+    textArea: ''
 }
 
 const dialogsReducer = (state = initialState, action) => {
