@@ -1,3 +1,13 @@
 .descriptionBlock {
     padding: 10px;
 }
+
+.status {
+    background-color: #e1d5ff;
+}
+
+.status span {
+    display: inline-block;
+    margin: 10px;
+    background-color: #f5f1ff;
+}

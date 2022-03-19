@@ -1,5 +1,4 @@
-const addMessage = 'ADD-MESSAGE';
-const changeMessageArea = 'CHANGE-MESSAGE-AREA';
+const ADD_MESSAGE = 'ADD_MESSAGE';
 
 let initialState = {
     dialogs: [
@@ -17,27 +16,19 @@ let initialState = {
         {id: 3, message: 'Hi2', incoming: false},
         {id: 4, message: 'Hi', incoming: true},
 
-    ],
-    textArea: ''
+    ]
 }
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case addMessage: {
+        case ADD_MESSAGE: {
             return {
                 ...state,
                 messages: [...state.messages, {
                     id: 5,
-                    message: state.textArea,
+                    message: action.message,
                     incoming: false
-                }],
-                textArea: ''
-            };
-        }
-        case changeMessageArea: {
-            return {
-                ...state,
-                textArea: action.text
+                }]
             };
         }
         default:
@@ -45,7 +36,6 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const addMessageActionCreator = () => ({type: addMessage});
-export const changeMessageAreaActionCreator = (text) => ({type: changeMessageArea, text: text});
+export const addMessage = (message) => ({type: ADD_MESSAGE, message});
 
 export default dialogsReducer;
