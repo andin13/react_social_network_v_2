@@ -1,15 +1,22 @@
 import React from "react";
 import connect from "react-redux/lib/connect/connect";
 import Users from "./Users";
-import {follow, setPage, toggleFollowingProgress, getUsers, updateUsers} from "../../Redux/usersReducer";
+import {follow, setPage, toggleFollowingProgress, requestUsers, updateUsers} from "../../Redux/usersReducer";
 import Preloader from "../common/Preloader/Preloader";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../Redux/users-selectors";
 
 class UsersAPIComponent extends React.Component {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize);
     }
 
     onPageChanged = (pageNumber) => {
@@ -18,6 +25,7 @@ class UsersAPIComponent extends React.Component {
     }
 
     render() {
+        console.log("UsersComponent RERENDER")
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
@@ -34,17 +42,17 @@ class UsersAPIComponent extends React.Component {
 }
 
 let mapStateToProps = (state) => {
+    console.log("UsersAPIComponent mapStateToProps")
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
 
 export default compose(
-    withAuthRedirect,
-    connect(mapStateToProps, {follow, setPage, toggleFollowingProgress, getUsers, updateUsers})
+    connect(mapStateToProps, {follow, setPage, toggleFollowingProgress, requestUsers, updateUsers})
 )(UsersAPIComponent);
