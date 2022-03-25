@@ -1,75 +1,44 @@
-import {useFormik} from "formik";
+import {Formik, Field, Form} from 'formik';
 import s from './../Login.module.css';
 
-const LoginForm = (props) => {
-    const initialValues = {
+const LoginForm = ({login}) => <Formik
+    initialValues={{
         login: '',
         password: '',
-        rememberMe: null
-    }
-
-    const onSubmit = (values) => {
-        props.login(values.login, values.password)
-    }
-
-    const validate = (values) => {
-        let errors = {}
-        if (!values.login) {
-            errors.login = 'Fill this form!'
-        }
-        if (!values.password) {
-            errors.password = 'Required'
-        }
-        return errors
-    }
-
-    const formik = useFormik({
-        initialValues,
-        onSubmit,
-        validate
-    })
-    console.log('Forms touched', formik.touched)
-    return <form onSubmit={formik.handleSubmit}>
+        rememberMe: true
+    }}
+    onSubmit={(values) => login(values.login, values.password, values.rememberMe)}
+>
+    <Form>
         <div className={s.formItem}>
             <div>
                 <label htmlFor="login">Login</label>
             </div>
             <div>
-                <input type={'text'}
-                       id={'login'}
-                       name={'login'}
-                       onChange={formik.handleChange}
-                       onBlur={formik.handleBlur}
-                       value={formik.values.login}/>
+                <Field id={'login'}
+                       name={'login'}/>
             </div>
-            {formik.touched.login && formik.errors.login ? <div className={s.formControl}>{formik.errors.login}</div> : null}
         </div>
         <div className={s.formItem}>
             <div>
                 <label htmlFor="password">Password</label>
             </div>
             <div>
-                <input type={'password'}
+                <Field type={'password'}
                        id={'password'}
-                       name={'password'}
-                       onChange={formik.handleChange}
-                       onBlur={formik.handleBlur}
-                       value={formik.values.password}/>
+                       name={'password'}/>
             </div>
-            {formik.touched.password && formik.errors.password ? <div className={s.formControl}>{formik.errors.password}</div> : null}
         </div>
         <div className={s.formItem}>
-            <input type={'checkbox'}
+            <Field type={'checkbox'}
                    id={'rememberMe'}
-                   name={'rememberMe'}
-                   onChange={formik.handleChange}
-                /*checked={formik.values.rememberMe === 'Y'}*//>
+                   name={'rememberMe'}/>
             <label htmlFor="rememberMe">Remember me</label>
         </div>
         <div>
             <button type={"submit"}>Login</button>
         </div>
-    </form>
-}
+    </Form>
+</Formik>
 
 export default LoginForm;

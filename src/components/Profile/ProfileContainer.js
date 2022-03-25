@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import connect from "react-redux/lib/connect/connect";
-import {getProfile, getStatus, updateStatus} from "../../Redux/profileReducer";
+import {getProfile, getStatus, updateStatus} from "../../Redux/profile-reducer";
 import {useParams} from "react-router-dom";
 import {compose} from "redux";
 import {Navigate} from "react-router-dom";

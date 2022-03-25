@@ -16,7 +16,7 @@
 }
 
 .avatar, .userInfo {
-    background-color: skyblue;
+    background-color: rgb(198, 168, 255);
     display: grid;
 }
 
@@ -31,9 +31,5 @@
 
 .userInfo * {
     display: grid;
-    background-color: lightblue;
-}
-
-.selectedPage {
-    font-weight: bold;
+    background-color: #e1d5ff;
 }

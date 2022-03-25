@@ -25,7 +25,7 @@ const dialogsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 messages: [...state.messages, {
-                    id: 5,
+                    id: (state.messages[state.messages.length-1].id+1),
                     message: action.message,
                     incoming: false
                 }]

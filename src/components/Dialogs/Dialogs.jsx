@@ -6,8 +6,8 @@ import MessageForm from "./MessageForm/MessageForm";
 
 const Dialogs = (props) => {
 
-    const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
-    const messagesElements = props.dialogsPage.messages.map(m => <Message incoming={m.incoming} message={m.message}/>)
+    const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
+    const messagesElements = props.dialogsPage.messages.map(m => <Message incoming={m.incoming} key={m.id} message={m.message}/>)
     const textArea = props.dialogsPage.textArea;
 
     return <div className={s.dialogs}>

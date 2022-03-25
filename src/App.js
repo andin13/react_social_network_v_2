@@ -11,7 +11,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/Login/LoginContainer";
 import {Component} from "react";
 import connect from "react-redux/lib/connect/connect";
-import {initializeApp} from "./Redux/appReducer";
+import {initializeApp} from "./Redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 
 class App extends Component {

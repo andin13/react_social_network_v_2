@@ -2,7 +2,7 @@ import React from "react";
 import {
     addPost,
     deletePosts
-} from "../../../Redux/profileReducer";
+} from "../../../Redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import connect from "react-redux/lib/connect/connect";
 

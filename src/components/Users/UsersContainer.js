@@ -1,7 +1,7 @@
 import React from "react";
 import connect from "react-redux/lib/connect/connect";
 import Users from "./Users";
-import {follow, setPage, toggleFollowingProgress, requestUsers, updateUsers} from "../../Redux/usersReducer";
+import {follow, setPage, toggleFollowingProgress, requestUsers, updateUsers, unfollow} from "../../Redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
 import {
@@ -16,16 +16,17 @@ import {
 class UsersAPIComponent extends React.Component {
 
     componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize);
+        const {currentPage, pageSize} = this.props;
+        this.props.requestUsers(currentPage, pageSize);
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.updateUsers(pageNumber, this.props.pageSize);
+        const {pageSize} = this.props;
+        this.props.updateUsers(pageNumber, pageSize);
         this.props.setPage(pageNumber);
     }
 
     render() {
-        console.log("UsersComponent RERENDER")
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
@@ -34,6 +35,7 @@ class UsersAPIComponent extends React.Component {
                    onPageChanged={this.onPageChanged}
                    users={this.props.users}
                    follow={this.props.follow}
+                   unfollow={this.props.unfollow}
                    followingInProgress={this.props.followingInProgress}
                    toggleFollowingProgress={this.props.toggleFollowingProgress}
             />
@@ -42,7 +44,6 @@ class UsersAPIComponent extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-    console.log("UsersAPIComponent mapStateToProps")
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
@@ -54,5 +55,5 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {follow, setPage, toggleFollowingProgress, requestUsers, updateUsers})
+    connect(mapStateToProps, {follow, unfollow, setPage, toggleFollowingProgress, requestUsers, updateUsers})
 )(UsersAPIComponent);

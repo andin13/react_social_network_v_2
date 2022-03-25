@@ -10,7 +10,6 @@ const MessageForm = (props) => {
         message: ''
     }
     const onSubmit = (values) => {
-        console.log(values.message);
         props.addMessage(values.message);
     }
     const validate = (values) => {
