@@ -12,6 +12,7 @@ import {
     getTotalUsersCount,
     getUsers
 } from "../../Redux/users-selectors";
+import {useParams} from "react-router-dom";
 
 class UsersAPIComponent extends React.Component {
 
@@ -23,22 +24,25 @@ class UsersAPIComponent extends React.Component {
     onPageChanged = (pageNumber) => {
         const {pageSize} = this.props;
         this.props.updateUsers(pageNumber, pageSize);
-        this.props.setPage(pageNumber);
+        this.props.setPage(+pageNumber);
     }
 
     render() {
         return <>
-            {this.props.isFetching ? <Preloader/> : null}
-            <Users totalUsersCount={this.props.totalUsersCount}
-                   pageSize={this.props.pageSize}
-                   currentPage={this.props.currentPage}
-                   onPageChanged={this.onPageChanged}
-                   users={this.props.users}
-                   follow={this.props.follow}
-                   unfollow={this.props.unfollow}
-                   followingInProgress={this.props.followingInProgress}
-                   toggleFollowingProgress={this.props.toggleFollowingProgress}
-            />
+            {
+                this.props.isFetching
+                    ? <Preloader/>
+                    : <Users totalUsersCount={this.props.totalUsersCount}
+                             pageSize={this.props.pageSize}
+                             currentPage={this.props.currentPage}
+                             onPageChanged={this.onPageChanged}
+                             users={this.props.users}
+                             follow={this.props.follow}
+                             unfollow={this.props.unfollow}
+                             followingInProgress={this.props.followingInProgress}
+                             toggleFollowingProgress={this.props.toggleFollowingProgress}
+                    />
+            }
         </>
     }
 }
@@ -54,6 +58,13 @@ let mapStateToProps = (state) => {
     }
 }
 
+const WithUrlDataContainerComponent = (props) => {
+    const {currentPage} = useParams();
+    return (
+        <UsersAPIComponent {...props} currentPage={currentPage}/>
+    )
+}
+
 export default compose(
     connect(mapStateToProps, {follow, unfollow, setPage, toggleFollowingProgress, requestUsers, updateUsers})
-)(UsersAPIComponent);
+)(WithUrlDataContainerComponent);

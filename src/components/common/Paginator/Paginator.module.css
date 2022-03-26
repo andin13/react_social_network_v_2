@@ -1,3 +1,25 @@
+.paginator {
+    margin: 10px;
+}
+.pageNumber, .selectedPage {
+    color: rgb(116, 59, 192);
+    text-decoration: none;
+    padding: 2px;
+    border: 1px solid rgb(116, 59, 192);
+}
 .selectedPage {
     font-weight: bold;
+}
+
+.item {
+    color: white;
+    padding: 5%;
+}
+
+.active {
+    color: rgb(116, 59, 192);
+    text-decoration: none;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
 }

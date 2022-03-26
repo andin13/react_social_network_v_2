@@ -33,7 +33,9 @@ class App extends Component {
                             <Route path="/profile" element={<ProfileContainer/>}>
                                 <Route path=":userId" element={<ProfileContainer/>}/>
                             </Route>
-                            <Route path="/users/*" element={<UsersContainer/>}/>
+                            <Route path="/users" element={<UsersContainer/>}>
+                                <Route path=":currentPage" element={<UsersContainer/>}/>
+                            </Route>
                             <Route path="/news/*" element={<News/>}/>
                             <Route path="/music/*" element={<Music/>}/>
                             <Route path="/settings/*" element={<Settings/>}/>
