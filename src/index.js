@@ -4,11 +4,11 @@ import store from "./Redux/redux-store";
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
-import Provider from "react-redux/lib/components/Provider";
+import {Provider} from "react-redux";
 
     ReactDOM.render(
         <React.StrictMode>
-            <BrowserRouter>
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <Provider store={store}>
                     <App/>
                 </Provider>

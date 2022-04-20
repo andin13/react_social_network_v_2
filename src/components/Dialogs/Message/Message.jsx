@@ -1,8 +1,8 @@
 import s from '../Dialogs.module.css';
 
-const Message = (props) => {
+function Message({incoming, message}) {
     return (
-        <div className={props.incoming ? s.incoming : s.outgoing}>{props.message}</div>
+        <div className={incoming ? s.incoming : s.outgoing}>{message}</div>
     )
 }
 

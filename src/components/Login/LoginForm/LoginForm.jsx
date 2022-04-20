@@ -1,13 +1,16 @@
 import {Formik, Field, Form} from 'formik';
 import s from './../Login.module.css';
 
-const LoginForm = ({login}) => <Formik
+function LoginForm({login}) {
+    return <Formik
     initialValues={{
         login: '',
         password: '',
         rememberMe: true
     }}
-    onSubmit={(values) => login(values.login, values.password, values.rememberMe)}
+    onSubmit={(values) => {
+        return login(values.login, values.password, values.rememberMe)
+    }}
 >
     <Form>
         <div className={s.formItem}>
@@ -40,5 +43,6 @@ const LoginForm = ({login}) => <Formik
         </div>
     </Form>
 </Formik>
+}
 
 export default LoginForm;

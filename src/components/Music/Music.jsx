@@ -1,4 +1,4 @@
-const Music = (props) => {
+const Music = () => {
     return <div>
         Music
     </div>

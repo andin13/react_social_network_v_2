@@ -2,14 +2,14 @@ import s from './../MyPosts.module.css';
 import React from "react";
 import {useFormik} from "formik";
 
-const PostForm = (props) => {
+const PostForm = ({addPost}) => {
 
     const initialValues = {
         post: ''
     }
     const onSubmit = (values) => {
         console.log(values.post);
-        props.addPost(values.post);
+        addPost(values.post);
     }
     const validate = (values) => {
         let errors = {}

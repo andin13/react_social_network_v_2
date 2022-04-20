@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import s from './Paginator.module.css';
 import {NavLink} from "react-router-dom";
 
-const Paginator = ({totalItemsCount, currentPage, onPageChanged, pageSize, portionSize = 10, baseUrl}) => {
+function Paginator ({totalItemsCount, currentPage, onPageChanged, pageSize, portionSize = 10, baseUrl}) {
 
     const pagesCount = Math.ceil(totalItemsCount / pageSize);
     currentPage = currentPage !== undefined ? currentPage : 1;

@@ -1,8 +1,8 @@
 import spinner from "../../../assets/images/spinner.gif"
 
-const Preloader = (props) => {
+function Preloader() {
     return <div>
-        <img src={spinner} />
+        <img src={spinner} alt=''/>
     </div>
 } 
 

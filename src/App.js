@@ -1,58 +1,60 @@
 import './App.css';
-import {Routes, Route} from "react-router-dom";
+import {Routes, Route, Navigate} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import React, {Component, Suspense} from "react";
-import connect from "react-redux/lib/connect/connect";
-import {initializeApp} from "./Redux/app-reducer";
+import React, {Suspense, useEffect} from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import Preloader from "./components/common/Preloader/Preloader";
-import NavbarContainer from "./components/Navbar/NavbarContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
-const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
-const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
-const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
-const LoginContainer = React.lazy(() => import('./components/Login/LoginContainer'));
+import Navbar from "./components/Navbar/Navbar";
+import Header from "./components/Header/Header";
+import { initializeApp } from './Redux/app-reducer';
+const Dialogs = React.lazy(() => import('./components/Dialogs/Dialogs'));
+const Users = React.lazy(() => import('./components/Users/Users'));
+const Profile = React.lazy(() => import('./components/Profile/Profile'));
+const Login = React.lazy(() => import('./components/Login/Login'));
 
-class App extends Component {
-    componentDidMount() {
-        this.props.initializeApp();
+function App() {
+
+    const initialized = useSelector(state => state.app.initialized);
+    const isAuth = useSelector(state => state.auth.isAuth);
+    const dispatch = useDispatch();
+    const initializeAppFn = () => dispatch(initializeApp());
+
+    useEffect(() => initializeAppFn(), []);
+
+    if (!initialized) {
+        return <div>
+            <Preloader/>
+        </div>
     }
-    render() {
-        if (!this.props.initialized) {
-            return <Preloader/>
-        }
-        return (
-            <div className='app-wrapper'>
-                <HeaderContainer/>
-                <div className='main-content'>
-                    <NavbarContainer/>
-                    <div className='app-wrapper-content'>
-                        <Suspense fallback={<Preloader/>}>
-                        <Routes>
-                            <Route path="/dialogs/*" element={<DialogsContainer/>}/>
-                            <Route path="/profile" element={<ProfileContainer/>}>
-                                <Route path=":userId" element={<ProfileContainer/>}/>
-                            </Route>
-                            <Route path="/users" element={<UsersContainer/>}>
-                                <Route path=":currentPage" element={<UsersContainer/>}/>
-                            </Route>
-                            <Route path="/news/*" element={<News/>}/>
-                            <Route path="/music/*" element={<Music/>}/>
-                            <Route path="/settings/*" element={<Settings/>}/>
-                            <Route path="/login/*" element={<LoginContainer/>}/>
-                        </Routes>
-                        </Suspense>
-                    </div>
+
+    return (
+        <div className='app-wrapper'>
+            <Header/>
+            <div className='main-content'>
+                <Navbar/>
+                <div className='app-wrapper-content'>
+                    <Suspense fallback={<Preloader/>}>
+                    <Routes>
+                        <Route path="/dialogs/*" element={<Dialogs/>}/>
+                        <Route path="/profile" element={<Profile/>}>
+                            <Route path=":userIdUrl" element={<Profile/>}/>
+                        </Route>
+                        <Route path="/users" element={<Users/>}>
+                            <Route path=":currentPageUrl" element={<Users/>}/>
+                        </Route>
+                        <Route path="/news/*" element={<News/>}/>
+                        <Route path="/music/*" element={<Music/>}/>
+                        <Route path="/settings/*" element={<Settings/>}/>
+                        <Route path="/login/*" element={<Login/>}/>
+                        <Route path="/" element={<Navigate to={isAuth ? '/profile' : '/login'}/>}/>
+                    </Routes>
+                    </Suspense>
                 </div>
-
             </div>
-        );
-    }
+        </div>
+    );
 }
 
-const mapStateToProps = (state) => ({
-    initialized: state.app.initialized
-})
-
-export default connect(mapStateToProps, {initializeApp}) (App);
+export default App;

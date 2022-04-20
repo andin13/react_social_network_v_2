@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from "react";
 import s from './ProfileInfo.module.css';
 
-const ProfileStatusWithHooks = (props) => {
+const ProfileStatusWithHooks = ({status, isOwner, updateStatus}) => {
 
     const [editMode, setEditMode] = useState(false);
-    const [status, setStatus] = useState(props.status);
+    const [localStatus, setStatus] = useState(status);
     useEffect(() => {
-        setStatus(props.status);
-    }, [props.status]);
+        setStatus(status);
+    }, [status]);
 
     const activateEditMode = () => {
-        setEditMode(true);
+        isOwner && setEditMode(true);
     }
     const deactivateEditMode = () => {
         setEditMode(false);
-        props.updateStatus(status);
+        updateStatus(localStatus);
     }
     const onStatusChange = (e) => {
         setStatus(e.currentTarget.value)
@@ -22,10 +22,10 @@ const ProfileStatusWithHooks = (props) => {
 
     return <div className={s.status}>
         {!editMode && <div>
-            <span onDoubleClick={activateEditMode}>{props.status || 'empty'}</span>
+            <span onDoubleClick={activateEditMode}>{status || 'empty'}</span>
         </div>}
         {editMode && <div>
-            <input autoFocus={true} onBlur={deactivateEditMode} onChange={onStatusChange} value={status}/>
+            <input autoFocus={true} onBlur={deactivateEditMode} onChange={onStatusChange} value={localStatus}/>
         </div>}
     </div>
 }

@@ -1,4 +1,4 @@
-const Settings = (props) => {
+const Settings = () => {
     return <div>
         Settings
     </div>

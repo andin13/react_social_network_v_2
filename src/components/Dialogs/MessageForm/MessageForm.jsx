@@ -2,7 +2,7 @@ import s from './../Dialogs.module.css';
 import React from "react";
 import {useFormik} from "formik";
 
-const MessageForm = (props) => {
+function MessageForm({addMessage}) {
 
     const buttonImageUrl = 'https://icon-library.com/images/chat-send-icon/chat-send-icon-1.jpg'
 
@@ -10,7 +10,8 @@ const MessageForm = (props) => {
         message: ''
     }
     const onSubmit = (values) => {
-        props.addMessage(values.message);
+        addMessage(values.message);
+        formik.handleReset()
     }
     const validate = (values) => {
         let errors = {}
@@ -34,7 +35,7 @@ const MessageForm = (props) => {
                           onChange={formik.handleChange}
                           value={formik.values.message}
                 />
-            <button type={'submit'}><img src={buttonImageUrl}/></button>
+            <button type={'submit'}><img src={buttonImageUrl} alt=''/></button>
         </div>
     </form>
 }

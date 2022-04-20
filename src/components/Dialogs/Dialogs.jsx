@@ -3,12 +3,18 @@ import DialogItem from "./DialogItem/DialogItem";
 import React from "react";
 import Message from "./Message/Message";
 import MessageForm from "./MessageForm/MessageForm";
+import { useSelector, useDispatch } from 'react-redux';
+import { addMessage } from '../../Redux/dialogs-reducer';
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
-const Dialogs = (props) => {
+function Dialogs() {
 
-    const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
-    const messagesElements = props.dialogsPage.messages.map(m => <Message incoming={m.incoming} key={m.id} message={m.message}/>)
-    const textArea = props.dialogsPage.textArea;
+    const dialogsPage = useSelector(state => state.dialogsPage);
+    const dispatch = useDispatch();
+    const addMessageFn = (message) => dispatch(addMessage(message));
+
+    const dialogsElements = dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
+    const messagesElements = dialogsPage.messages.map(m => <Message incoming={m.incoming} key={m.id} message={m.message}/>)
 
     return <div className={s.dialogs}>
         <div className={s.dialogsItems}>
@@ -18,9 +24,9 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 {messagesElements}
             </div>
-            <MessageForm textArea={textArea} addMessage={props.addMessage} />
+            <MessageForm addMessage={addMessageFn} />
         </div>
     </div>
 }
 
-export default Dialogs;
+export default withAuthRedirect(Dialogs);
