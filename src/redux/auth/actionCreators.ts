@@ -1,4 +1,4 @@
-import { IUser } from '../commonTypes/IUser';
+import { IUser } from '../../commonTypes/IUser';
 
 import { AuthAction, AuthActionTypes } from './types';
 

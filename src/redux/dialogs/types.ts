@@ -1,5 +1,5 @@
-import { IDialog } from '../commonTypes/IDialog';
-import { IMessage } from '../commonTypes/IMessage';
+import { IDialog } from '../../commonTypes/IDialog';
+import { IMessage } from '../../commonTypes/IMessage';
 
 export interface DialogsState {
     dialogs: Array<IDialog>;

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import React, {
   ChangeEvent, useEffect, useState,
 } from 'react';
@@ -34,7 +35,6 @@ function ProfileStatus({ status, isOwner, updateStatus }: ProfileStatusProps): J
       {editMode && (
       <div>
         <input
-          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
           onBlur={deactivateEditMode}
           onChange={onStatusChange}

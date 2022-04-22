@@ -1,4 +1,4 @@
-import { IPost } from '../commonTypes/IPost';
+import { IPost } from '../../commonTypes/IPost';
 
 export interface ProfileState {
     posts: Array<IPost>;

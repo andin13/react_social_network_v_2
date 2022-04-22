@@ -2,7 +2,6 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://andin13.github.io/react_social_network_v_2",
   "dependencies": {
     "axios": "^0.24.0",
     "formik": "^2.2.9",
