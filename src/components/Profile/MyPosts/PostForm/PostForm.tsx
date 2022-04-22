@@ -1,7 +1,9 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import s from '../MyPosts.module.css';
+
 import { FormValues, PostFormProps } from './types';
+
+import s from '../MyPosts.module.css';
 
 function PostForm({ addPost }: PostFormProps): JSX.Element {
   const initialValues: FormValues = {

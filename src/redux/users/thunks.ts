@@ -1,14 +1,16 @@
 import { Dispatch } from 'redux';
+
+import { usersAPI } from '../../api/api';
+
 import {
-  toggleIsFetchingAction,
-  setUsersAction,
-  setTotalUsersCountAction,
-  toggleIsFollowingProgressAction,
   followSuccessAction,
+  setTotalUsersCountAction,
+  setUsersAction,
+  toggleIsFetchingAction,
+  toggleIsFollowingProgressAction,
   unfollowSuccessAction,
 } from './actionCreators';
 import { UsersAction } from './types';
-import { usersAPI } from '../../api/api';
 
 export const updateUsersThunk = (
   currentPage,

@@ -1,7 +1,9 @@
 import React from 'react';
-import { Formik, Field, Form } from 'formik';
-import s from '../Login.module.css';
+import { Field, Form, Formik } from 'formik';
+
 import { LoginFormProps } from './types';
+
+import s from '../Login.module.css';
 
 function LoginForm({ login }: LoginFormProps): JSX.Element {
   return (

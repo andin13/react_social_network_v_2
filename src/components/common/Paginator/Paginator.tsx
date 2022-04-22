@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import s from './Paginator.module.css';
+
 import { PaginatorProps } from './types';
+
+import s from './Paginator.module.css';
 
 function Paginator({
   totalItemsCount, currentPage, onPageChanged,

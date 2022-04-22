@@ -1,5 +1,6 @@
 /* eslint-disable default-param-last */
 import { updateObjectInArray } from '../../utils/object-helpers';
+
 import { UsersAction, UsersActionTypes, UsersState } from './types';
 
 const initialState: UsersState = {

@@ -1,7 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import s from './DialogItem.module.css';
+
 import { DialogItemProps } from './types';
+
+import s from './DialogItem.module.css';
 
 function DialogItem({ name }: DialogItemProps): JSX.Element {
   const path = '/dialogs/';

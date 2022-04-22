@@ -1,9 +1,12 @@
 import React from 'react';
-import s from './MyPosts.module.css';
+
+import { useActionsAndThunks } from '../../../hooks/useActionsAndThunks';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
+
 import Post from './Post/Post';
 import PostForm from './PostForm/PostForm';
-import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { useActionsAndThunks } from '../../../hooks/useActionsAndThunks';
+
+import s from './MyPosts.module.css';
 
 function MyPosts(): JSX.Element {
   const posts = useTypedSelector((state) => state.profile.posts);

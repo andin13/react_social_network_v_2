@@ -19,7 +19,8 @@
     "plugins": [
         "react",
         "@typescript-eslint",
-        "react-hooks"
+        "react-hooks",
+        "simple-import-sort"
     ],
     "rules": {
         "no-use-before-define": "off",
@@ -54,8 +55,63 @@
         ],
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error"
     },
+    "overrides": [
+        // override "simple-import-sort" config
+        {
+            "files": [
+                "*.js",
+                "*.jsx",
+                "*.ts",
+                "*.tsx"
+            ],
+            "rules": {
+                "simple-import-sort/imports": [
+                    "error",
+                    {
+                        "groups": [
+                            // react first, then packages starting with a character and @
+                            [
+                                "^react$",
+                                "^[a-z]",
+                                "^@[a-z]"
+                            ],
+                            // Aliases starting with @
+                            [
+                                "^@"
+                            ],
+                            // Packages starting with ~
+                            [
+                                "^~"
+                            ],
+                            // Imports starting with ../
+                            [
+                                "^\\.\\.(?!/?$)",
+                                "^\\.\\./?$"
+                            ],
+                            // Imports starting with ./
+                            [
+                                "^\\./(?=.*/)(?!/?$)",
+                                "^\\.(?!/?$)",
+                                "^\\./?$"
+                            ],
+                            // Style imports
+                            [
+                                "^.+\\.s?css$"
+                            ],
+                            // Side effect imports
+                            [
+                                "^\\u0000"
+                            ]
+                        ]
+                    }
+                ]
+            }
+        }
+    ],
     "settings": {
         "import/resolver": {
             "typescript": {}

@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Paginator from '../common/Paginator/Paginator';
-import User from './User/User';
-import Preloader from '../common/Preloader/Preloader';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+
 import { useActionsAndThunks } from '../../hooks/useActionsAndThunks';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import Paginator from '../common/Paginator/Paginator';
+import Preloader from '../common/Preloader/Preloader';
+
+import User from './User/User';
 
 function Users(): JSX.Element {
   const users = useTypedSelector((state) => state.users.users);

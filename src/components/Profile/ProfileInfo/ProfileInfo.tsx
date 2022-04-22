@@ -1,8 +1,11 @@
 import React, { ChangeEvent } from 'react';
-import s from './ProfileInfo.module.css';
+
 import Preloader from '../../common/Preloader/Preloader';
-import ProfileStatusWithHooks from './ProfileStatus/ProfileStatus';
+
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 import { ProfileInfoProps } from './types';
+
+import s from './ProfileInfo.module.css';
 
 function ProfileInfo({
   profile, status, updateStatus, isOwner, savePhoto,
@@ -39,7 +42,7 @@ function ProfileInfo({
           alt=""
         />
         {isOwner && <input type="file" onChange={onMainPhotoSelected} />}
-        <ProfileStatusWithHooks status={status} updateStatus={updateStatus} isOwner={isOwner} />
+        <ProfileStatus status={status} updateStatus={updateStatus} isOwner={isOwner} />
       </div>
     </div>
   );

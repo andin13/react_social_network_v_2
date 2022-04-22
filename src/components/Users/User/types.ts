@@ -1,4 +1,5 @@
 import { Dispatch } from 'redux';
+
 import { UsersAction } from '../../../redux/users/types';
 
 export interface UserProps {

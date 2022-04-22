@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import s from './Header.module.css';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+
 import { useActionsAndThunks } from '../../hooks/useActionsAndThunks';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+
+import s from './Header.module.css';
 
 function Header(): JSX.Element {
   const isAuth = useTypedSelector((state) => state.auth.isAuth);

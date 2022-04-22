@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
-import s from './Profile.module.css';
-import ProfileInfo from './ProfileInfo/ProfileInfo';
-import MyPosts from './MyPosts/MyPosts';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { Navigate, useParams } from 'react-router-dom';
+
 import { useActionsAndThunks } from '../../hooks/useActionsAndThunks';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+
+import MyPosts from './MyPosts/MyPosts';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
+
+import s from './Profile.module.css';
 
 function Profile(): JSX.Element {
   const profile = useTypedSelector((state) => state.profile.profile);

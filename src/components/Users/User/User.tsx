@@ -1,8 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { UserProps } from './types';
-import s from '../Users.module.css';
+
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
+
+import { UserProps } from './types';
+
+import s from '../Users.module.css';
 
 function User({
   user, followingInProgress, toggleFollowingProgress, follow, unfollow,

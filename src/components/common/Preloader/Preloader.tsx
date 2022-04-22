@@ -1,4 +1,5 @@
 import React from 'react';
+
 import spinner from '../../../assets/images/spinner.gif';
 
 function Preloader() {

@@ -1,2 +1,9 @@
-*.css
-*.svg
+.git
+.vscode
+.idea
+node_modules/
+.eslintrc.js
+build/
+public/
+assets/
+/*.d.ts

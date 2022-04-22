@@ -1,4 +1,5 @@
 import { IUser } from '../commonTypes/IUser';
+
 import { AuthAction, AuthActionTypes } from './types';
 
 export const setUserDataAction = (

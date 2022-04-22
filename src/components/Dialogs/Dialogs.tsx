@@ -1,11 +1,14 @@
 import React from 'react';
-import s from './Dialogs.module.css';
+
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { useActionsAndThunks } from '../../hooks/useActionsAndThunks';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import MessageForm from './MessageForm/MessageForm';
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { useActionsAndThunks } from '../../hooks/useActionsAndThunks';
+
+import s from './Dialogs.module.css';
 
 function Dialogs(): JSX.Element {
   const dialogsPage = useTypedSelector((state) => state.dialogs);

@@ -1,8 +1,10 @@
 import React, {
   ChangeEvent, useEffect, useState,
 } from 'react';
-import s from '../ProfileInfo.module.css';
+
 import { ProfileStatusProps } from './types';
+
+import s from '../ProfileInfo.module.css';
 
 function ProfileStatus({ status, isOwner, updateStatus }: ProfileStatusProps): JSX.Element {
   const [editMode, setEditMode] = useState<boolean>(false);

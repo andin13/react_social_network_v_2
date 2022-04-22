@@ -1,6 +1,8 @@
 import React from 'react';
-import s from './Post.module.css';
+
 import { PostProps } from './types';
+
+import s from './Post.module.css';
 
 function Post({ postContent, likeCount }: PostProps): JSX.Element {
   const imageUrl = 'https://cdn4.iconfinder.com/'

@@ -1,7 +1,9 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import s from '../Dialogs.module.css';
+
 import { FormValues, MessageFormProps } from './types';
+
+import s from '../Dialogs.module.css';
 
 function MessageForm({ addMessage }: MessageFormProps): JSX.Element {
   const buttonImageUrl = 'https://icon-library.com/images/chat-send-icon/chat-send-icon-1.jpg';

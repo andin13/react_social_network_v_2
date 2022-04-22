@@ -1,19 +1,21 @@
-import './App.css';
-import { Routes, Route, Navigate } from 'react-router-dom';
 import React, { Suspense, useEffect } from 'react';
-import News from './components/News/News';
-import Music from './components/Music/Music';
-import Settings from './components/Settings/Settings';
-import Preloader from './components/common/Preloader/Preloader';
-import Navbar from './components/Navbar/Navbar';
-import Header from './components/Header/Header';
-import { useTypedSelector } from './hooks/useTypedSelector';
-import { useActionsAndThunks } from './hooks/useActionsAndThunks';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-const Dialogs = React.lazy(() => import('./components/Dialogs/Dialogs'));
-const Users = React.lazy(() => import('./components/Users/Users'));
-const Profile = React.lazy(() => import('./components/Profile/Profile'));
-const Login = React.lazy(() => import('./components/Login/Login'));
+import Preloader from '../components/common/Preloader/Preloader';
+import Header from '../components/Header/Header';
+import Music from '../components/Music/Music';
+import Navbar from '../components/Navbar/Navbar';
+import News from '../components/News/News';
+import Settings from '../components/Settings/Settings';
+import { useActionsAndThunks } from '../hooks/useActionsAndThunks';
+import { useTypedSelector } from '../hooks/useTypedSelector';
+
+import './App.css';
+
+const Dialogs = React.lazy(() => import('../components/Dialogs/Dialogs'));
+const Users = React.lazy(() => import('../components/Users/Users'));
+const Profile = React.lazy(() => import('../components/Profile/Profile'));
+const Login = React.lazy(() => import('../components/Login/Login'));
 
 function App() {
   const initialized = useTypedSelector((state) => state.app.initialized);

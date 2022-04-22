@@ -1,7 +1,9 @@
 import { Dispatch } from 'redux';
-import { setUserProfileAction, setStatusAction, savePhotoSuccessAction } from './actionCreators';
-import { ProfileAction } from './types';
+
 import { profileAPI } from '../../api/api';
+
+import { savePhotoSuccessAction, setStatusAction, setUserProfileAction } from './actionCreators';
+import { ProfileAction } from './types';
 
 export const getProfileThunk = (userId) => async (dispatch: Dispatch<ProfileAction | any>) => {
   const data = await profileAPI.getProfile(userId);

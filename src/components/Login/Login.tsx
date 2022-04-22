@@ -1,8 +1,10 @@
-import { Navigate } from 'react-router-dom';
 import React from 'react';
-import LoginForm from './LoginForm/LoginForm';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { Navigate } from 'react-router-dom';
+
 import { useActionsAndThunks } from '../../hooks/useActionsAndThunks';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+
+import LoginForm from './LoginForm/LoginForm';
 
 function Login(): JSX.Element {
   const isAuth = useTypedSelector((state) => state.auth.isAuth);

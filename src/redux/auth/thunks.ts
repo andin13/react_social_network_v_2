@@ -1,8 +1,10 @@
 import { Dispatch } from 'redux';
-import { IUser } from '../commonTypes/IUser';
-import { setUserDataAction, logoutAction } from './actionCreators';
-import { AuthAction } from './types';
+
 import { authAPI } from '../../api/api';
+import { IUser } from '../commonTypes/IUser';
+
+import { logoutAction, setUserDataAction } from './actionCreators';
+import { AuthAction } from './types';
 
 export const authMeThunk = () => async (dispatch: Dispatch<AuthAction>) => {
   const data = await authAPI.authMe();
