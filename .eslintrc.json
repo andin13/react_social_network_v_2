@@ -57,7 +57,16 @@
         "react-hooks/exhaustive-deps": "warn",
         "import/prefer-default-export": "off",
         "simple-import-sort/imports": "error",
-        "simple-import-sort/exports": "error"
+        "simple-import-sort/exports": "error",
+        "no-param-reassign": [
+            "error",
+            {
+                "props": true,
+                "ignorePropertyModificationsFor": [
+                    "state"
+                ]
+            }
+        ]
     },
     "overrides": [
         // override "simple-import-sort" config

@@ -1,0 +1,27 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { IUser } from '../../../commonTypes/IUser';
+
+import { AuthState } from './types';
+
+const initialState: AuthState = {
+  user: null,
+  isAuth: false,
+};
+
+export const authSlice = createSlice({
+  name: 'auth',
+  initialState,
+  reducers: {
+    setUserData(state, action: PayloadAction<IUser>) {
+      state.user = action.payload;
+      state.isAuth = true;
+    },
+    Logout(state) {
+      state.user = null;
+      state.isAuth = false;
+    },
+  },
+});
+
+export default authSlice.reducer;

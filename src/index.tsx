@@ -5,8 +5,11 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './app/App';
 import { store } from './redux/store';
+import { setupStore } from './toolkitRedux/store';
 
 import './index.css';
+
+// const store = setupStore;
 
 const root = createRoot(
   document.getElementById('root') as HTMLElement,
