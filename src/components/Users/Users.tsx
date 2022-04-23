@@ -8,25 +8,36 @@ import Preloader from '../common/Preloader/Preloader';
 
 import User from './User/User';
 
+type useParamsType = {
+  currentPageUrl: string;
+}
+
 function Users(): JSX.Element {
   const users = useTypedSelector((state) => state.users.users);
   const pageSize = useTypedSelector((state) => state.users.pageSize);
   const totalUsersCount = useTypedSelector((state) => state.users.totalUsersCount);
   const followingInProgress = useTypedSelector((state) => state.users.followingInProgress);
   const isFetching = useTypedSelector((state) => state.users.isFetching);
-  const { currentPageUrl } = useParams();
+  const { currentPageUrl } = useParams<useParamsType>();
+  let currentPage = 1;
+  if (currentPageUrl) {
+    currentPage = +currentPageUrl;
+  }
 
   const {
-    followThunk, unfollowThunk, toggleIsFollowingProgressAction,
     setPageAction, requestUsersThunk, updateUsersThunk,
   } = useActionsAndThunks();
 
-  const onPageChanged = (pageNumber) => {
+  const onPageChanged = (pageNumber: number) => {
     updateUsersThunk(pageNumber, pageSize);
     setPageAction(+pageNumber);
   };
 
-  useEffect(() => requestUsersThunk(currentPageUrl, pageSize), []);
+  const requestUsers = () => {
+    requestUsersThunk(currentPage, pageSize);
+  };
+
+  useEffect(() => requestUsers(), []);
 
   if (isFetching) return <Preloader />;
   return (
@@ -34,9 +45,10 @@ function Users(): JSX.Element {
       <Paginator
         totalItemsCount={totalUsersCount}
         pageSize={pageSize}
-        currentPage={currentPageUrl}
+        currentPage={currentPage}
         baseUrl="/users/"
         onPageChanged={onPageChanged}
+        portionSize={10}
       />
       <div>
         {
@@ -45,9 +57,6 @@ function Users(): JSX.Element {
                         user={u}
                         key={u.id}
                         followingInProgress={followingInProgress}
-                        toggleFollowingProgress={toggleIsFollowingProgressAction}
-                        follow={followThunk}
-                        unfollow={unfollowThunk}
                       />
                     ))
                 }

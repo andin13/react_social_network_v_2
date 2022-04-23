@@ -22,7 +22,11 @@ function App() {
   const isAuth = useTypedSelector((state) => state.auth.isAuth);
   const { initializeAppThunk } = useActionsAndThunks();
 
-  useEffect(() => initializeAppThunk(), []);
+  const initializeApp = () => {
+    initializeAppThunk();
+  };
+
+  useEffect(() => initializeApp(), []);
 
   if (!initialized) {
     return (

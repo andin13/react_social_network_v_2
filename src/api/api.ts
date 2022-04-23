@@ -73,7 +73,7 @@ export const profileAPI = {
 };
 
 export const usersAPI = {
-  getUsers: async (currentPage = 1, pageSize = 10) => {
+  getUsers: async (currentPage: number, pageSize = 10) => {
     const response = await instance.get(`users?page=${currentPage}&count=${pageSize}`);
     return response.data;
   },

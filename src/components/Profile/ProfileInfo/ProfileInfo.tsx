@@ -8,7 +8,7 @@ import { ProfileInfoProps } from './types';
 import s from './ProfileInfo.module.css';
 
 function ProfileInfo({
-  profile, status, updateStatus, isOwner, savePhoto,
+  profile, status, isOwner, savePhoto,
 }: ProfileInfoProps): JSX.Element {
   const defaultUserImageUrl = 'https://helpx.adobe.com/content/dam'
   + '/help/en/photoshop/using/convert-color-image-black-white/jcr_content'
@@ -42,7 +42,7 @@ function ProfileInfo({
           alt=""
         />
         {isOwner && <input type="file" onChange={onMainPhotoSelected} />}
-        <ProfileStatus status={status} updateStatus={updateStatus} isOwner={isOwner} />
+        <ProfileStatus status={status} isOwner={isOwner} />
       </div>
     </div>
   );

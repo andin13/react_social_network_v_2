@@ -7,7 +7,7 @@ import s from './Paginator.module.css';
 
 function Paginator({
   totalItemsCount, currentPage, onPageChanged,
-  pageSize, baseUrl, portionSize = 10,
+  pageSize, baseUrl, portionSize,
 }: PaginatorProps): JSX.Element {
   const pagesCount = Math.ceil(totalItemsCount / pageSize);
   const startPortionNumber = Math.ceil(currentPage !== undefined ? currentPage : 1 / 10);

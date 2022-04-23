@@ -40,7 +40,7 @@ export const requestUsersThunk = (
 const followUnfollowFlow = async (
   dispatch: Dispatch<UsersAction>,
   userId: number,
-  apiMethod,
+  apiMethod: (id: number) => Promise<any>,
   actionCreator: (userId: number) => UsersAction,
 ) => {
   dispatch(toggleIsFollowingProgressAction(

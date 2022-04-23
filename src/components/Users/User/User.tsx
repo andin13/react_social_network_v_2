@@ -1,27 +1,30 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { useActionsAndThunks } from '../../../hooks/useActionsAndThunks';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 
 import { UserProps } from './types';
 
 import s from '../Users.module.css';
 
-function User({
-  user, followingInProgress, toggleFollowingProgress, follow, unfollow,
-}: UserProps): JSX.Element {
+function User({ user, followingInProgress }: UserProps): JSX.Element {
   const isAuth = useTypedSelector((state) => state.auth.isAuth);
   const defaultUserImageUrl = 'https://cdn4.iconfinder.com/data/icons'
   + '/web-app-flat-circular-icons-set/64/Iconos_Redondos_Flat_Usuario_Icn-512.png';
+
+  const {
+    followThunk, unfollowThunk, toggleIsFollowingProgressAction,
+  } = useActionsAndThunks();
 
   const followButton = isAuth
     ? (
       <button
         disabled={followingInProgress.some((id) => id === user.id)}
         onClick={() => {
-          toggleFollowingProgress({ isFetching: true, userId: user.id });
-          if (user.followed === true) unfollow(user.id);
-          else follow(user.id);
+          toggleIsFollowingProgressAction({ isFetching: true, userId: user.id });
+          if (user.followed === true) unfollowThunk(user.id);
+          else followThunk(user.id);
         }}
         type="button"
       >

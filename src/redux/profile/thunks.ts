@@ -6,7 +6,7 @@ import { RootState } from '../rootReducer';
 import { savePhotoSuccessAction, setStatusAction, setUserProfileAction } from './actionCreators';
 import { ProfileAction } from './types';
 
-type ThunkType = ThunkAction<Promise<void>, RootState, unknown, ProfileAction>;
+export type ThunkType = ThunkAction<Promise<void>, RootState, unknown, ProfileAction>;
 
 export const getProfileThunk = (userId: number): ThunkType => async (dispatch) => {
   const data = await profileAPI.getProfile(userId);

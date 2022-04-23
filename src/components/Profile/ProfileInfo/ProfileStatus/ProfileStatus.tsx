@@ -3,13 +3,18 @@ import React, {
   ChangeEvent, useEffect, useState,
 } from 'react';
 
+import { useActionsAndThunks } from '../../../../hooks/useActionsAndThunks';
+
 import { ProfileStatusProps } from './types';
 
 import s from '../ProfileInfo.module.css';
 
-function ProfileStatus({ status, isOwner, updateStatus }: ProfileStatusProps): JSX.Element {
+function ProfileStatus({ status, isOwner }: ProfileStatusProps): JSX.Element {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [localStatus, setStatus] = useState<string>(status);
+
+  const { updateStatusThunk } = useActionsAndThunks();
+
   useEffect(() => {
     setStatus(status);
   }, [status]);
@@ -19,7 +24,7 @@ function ProfileStatus({ status, isOwner, updateStatus }: ProfileStatusProps): J
   };
   const deactivateEditMode = () => {
     setEditMode(false);
-    updateStatus(localStatus);
+    updateStatusThunk(localStatus);
   };
   const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
     setStatus(e.currentTarget.value);

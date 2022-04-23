@@ -1,6 +1,6 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { useActionsAndThunks } from '../../hooks/useActionsAndThunks';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
@@ -13,6 +13,7 @@ import s from './Dialogs.module.css';
 function Dialogs(): JSX.Element {
   const dialogsPage = useTypedSelector((state) => state.dialogs);
   const { addMessageAction } = useActionsAndThunks();
+  const isAuth = useTypedSelector((state) => state.auth.isAuth);
 
   const dialogsElements = dialogsPage.dialogs.map((d) => (
     <DialogItem
@@ -28,6 +29,9 @@ function Dialogs(): JSX.Element {
     />
   ));
 
+  if (!isAuth) {
+    return <Navigate to="/login" />;
+  }
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItems}>
@@ -43,4 +47,4 @@ function Dialogs(): JSX.Element {
   );
 }
 
-export default withAuthRedirect(Dialogs);
+export default Dialogs;

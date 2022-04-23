@@ -9,16 +9,26 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 import s from './Profile.module.css';
 
+type useParamsType = {
+  userIdUrl: string;
+}
+
 function Profile(): JSX.Element {
   const profile = useTypedSelector((state) => state.profile.profile);
   const userId = useTypedSelector((state) => state.auth.user?.id);
   const isAuth = useTypedSelector((state) => state.auth.isAuth);
   const status = useTypedSelector((state) => state.profile.status);
-  const { userIdUrl } = useParams();
-  const currentUsedId: string | number | undefined | null = userIdUrl || userId;
+  const { userIdUrl } = useParams<useParamsType>();
+  let currentUsedId = 0;
+  if (userIdUrl) {
+    currentUsedId = +userIdUrl;
+  }
+  if (userId) {
+    currentUsedId = userId;
+  }
 
   const {
-    getProfileThunk, getStatusThunk, updateStatusThunk, savePhotoThunk,
+    getProfileThunk, getStatusThunk, savePhotoThunk,
   } = useActionsAndThunks();
 
   const setProfile = () => {
@@ -38,7 +48,6 @@ function Profile(): JSX.Element {
           isOwner={!userIdUrl}
           savePhoto={savePhotoThunk}
           status={status}
-          updateStatus={updateStatusThunk}
         />
         <MyPosts />
       </div>
