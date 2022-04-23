@@ -3,16 +3,16 @@ import { NavLink } from 'react-router-dom';
 
 import classes from './Navbar.module.css';
 
-function Navbar(): JSX.Element {
-  const navbarItems = [
-    { name: 'Profile', url: '/profile' },
-    { name: 'Messages', url: '/dialogs' },
-    { name: 'Users', url: '/users' },
-    { name: 'News', url: '/news' },
-    { name: 'Music', url: '/music' },
-    { name: 'Settings', url: '/settings' },
-  ];
+const navbarItems = [
+  { name: 'Profile', url: '/profile' },
+  { name: 'Messages', url: '/dialogs' },
+  { name: 'Users', url: '/users' },
+  { name: 'News', url: '/news' },
+  { name: 'Music', url: '/music' },
+  { name: 'Settings', url: '/settings' },
+];
 
+function Navbar(): JSX.Element {
   const NavbarItemsComponents = navbarItems
     .map((ni) => (
       <NavLink

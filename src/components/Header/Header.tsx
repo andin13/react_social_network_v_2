@@ -1,15 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { useActionsAndThunks } from '../../hooks/useActionsAndThunks';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { logoutThunk } from '../../toolkitRedux/reducers/auth/thunks';
 
 import s from './Header.module.css';
 
 function Header(): JSX.Element {
-  const isAuth = useTypedSelector((state) => state.auth.isAuth);
-  const login = useTypedSelector((state) => state.auth.user?.login);
-  const { logoutThunk } = useActionsAndThunks();
+  const isAuth = useTypedSelector((state) => state.AuthReducer.isAuth);
+  const login = useTypedSelector((state) => state.AuthReducer.user?.login);
   const logoUrl = 'https://cdn.dribbble.com/users/10882/screenshots'
   + '/15172621/media/cd2246d5d0f54f9a4316bd4d276764b2.png?compress=1&resize=400x300';
 

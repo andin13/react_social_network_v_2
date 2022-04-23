@@ -7,8 +7,8 @@ import Music from '../components/Music/Music';
 import Navbar from '../components/Navbar/Navbar';
 import News from '../components/News/News';
 import Settings from '../components/Settings/Settings';
-import { useActionsAndThunks } from '../hooks/useActionsAndThunks';
 import { useTypedSelector } from '../hooks/useTypedSelector';
+import { initializeAppThunk } from '../toolkitRedux/reducers/app/thunks';
 
 import './App.css';
 
@@ -18,9 +18,8 @@ const Profile = React.lazy(() => import('../components/Profile/Profile'));
 const Login = React.lazy(() => import('../components/Login/Login'));
 
 function App() {
-  const initialized = useTypedSelector((state) => state.app.initialized);
-  const isAuth = useTypedSelector((state) => state.auth.isAuth);
-  const { initializeAppThunk } = useActionsAndThunks();
+  const initialized = useTypedSelector((state) => state.AppReducer.initialized);
+  const isAuth = useTypedSelector((state) => state.AuthReducer.isAuth);
 
   const initializeApp = () => {
     initializeAppThunk();
