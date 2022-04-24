@@ -1,6 +1,6 @@
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
-import { usersAPI } from '../../../api/api';
+import { usersAPI } from '../../../api/usersAPI/usersAPI';
 import { AppDispatch } from '../../store';
 
 import {

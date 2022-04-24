@@ -1,4 +1,4 @@
-import { authAPI, ResultCodes } from '../../../api/api';
+import { authAPI, ResultCodes } from '../../../api/authAPI/authAPI';
 import { IUser } from '../../../commonTypes/IUser';
 import { AppDispatch } from '../../store';
 

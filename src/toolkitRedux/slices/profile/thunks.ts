@@ -1,4 +1,4 @@
-import { profileAPI } from '../../../api/api';
+import { profileAPI } from '../../../api/profileAPI/profileAPI';
 import { AppDispatch } from '../../store';
 
 import { savePhotoSuccess, setStatus, setUserProfile } from './slice';
