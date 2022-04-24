@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from 'react';
 
+import { picturesUrls } from '../../../constants/picturesUrls';
 import Preloader from '../../common/Preloader/Preloader';
 
 import ProfileStatus from './ProfileStatus/ProfileStatus';
@@ -10,12 +11,7 @@ import s from './ProfileInfo.module.css';
 function ProfileInfo({
   profile, status, isOwner, savePhoto,
 }: ProfileInfoProps): JSX.Element {
-  const defaultUserImageUrl = 'https://helpx.adobe.com/content/dam'
-  + '/help/en/photoshop/using/convert-color-image-black-white/jcr_content'
-  + '/main-pars/before_and_after/image-before/Landscape-Color.jpg';
-  const defaultUserAvatarUrl = 'https://cdn4.iconfinder.com/data/'
-  + 'icons/web-app-flat-circular-icons-set/64/Iconos_Redondos_Flat_Usuario_Icn-512.png';
-  const userAvatar = profile.photos.large ? profile.photos.large : defaultUserAvatarUrl;
+  const userAvatar = profile.photos.large ? profile.photos.large : picturesUrls.DEFAULT_AVATAR_ICON;
 
   const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.length) {
@@ -30,7 +26,7 @@ function ProfileInfo({
     <div>
       <div>
         <img
-          src={defaultUserImageUrl}
+          src={picturesUrls.DEFAULT_IMAGE}
           style={{ width: '100%' }}
           alt=""
         />

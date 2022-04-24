@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import { componentsRoots } from '../../../constants/componentsRoots';
+import { picturesUrls } from '../../../constants/picturesUrls';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { usersSlice } from '../../../toolkitRedux/slices/users/slice';
 import { followThunk, unfollowThunk } from '../../../toolkitRedux/slices/users/thunks';
@@ -13,8 +15,6 @@ import s from '../Users.module.css';
 function User({ user, followingInProgress }: UserProps): JSX.Element {
   const isAuth = useTypedSelector((state) => state.AuthReducer.isAuth);
   const dispatch = useDispatch();
-  const defaultUserImageUrl = 'https://cdn4.iconfinder.com/data/icons'
-  + '/web-app-flat-circular-icons-set/64/Iconos_Redondos_Flat_Usuario_Icn-512.png';
 
   const { toggleIsFollowingProgress } = usersSlice.actions;
 
@@ -39,9 +39,9 @@ function User({ user, followingInProgress }: UserProps): JSX.Element {
       <div className={s.container}>
         <div className={s.avatar}>
           <div>
-            <NavLink to={`/profile/${user.id}`}>
+            <NavLink to={`/${componentsRoots.PROFILE}/${user.id}`}>
               <img
-                src={user.photos.small ? user.photos.small : defaultUserImageUrl}
+                src={user.photos.small ? user.photos.small : picturesUrls.DEFAULT_AVATAR_ICON}
                 alt="img"
                 className={s.userAvatar}
               />

@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import { componentsRoots } from '../../constants/componentsRoots';
+import { picturesUrls } from '../../constants/picturesUrls';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { logoutThunk } from '../../toolkitRedux/slices/auth/thunks';
 
@@ -14,13 +16,11 @@ function Header(): JSX.Element {
   const logout = () => {
     dispatch(logoutThunk());
   };
-  const logoUrl = 'https://cdn.dribbble.com/users/10882/screenshots'
-  + '/15172621/media/cd2246d5d0f54f9a4316bd4d276764b2.png?compress=1&resize=400x300';
 
   return (
     <header className={s.header}>
       <NavLink className={s.logo} to="/">
-        <img src={logoUrl} alt="" />
+        <img src={picturesUrls.LOGO} alt="" />
       </NavLink>
       <div className={s.loginBlock}>
         { isAuth
@@ -35,7 +35,7 @@ function Header(): JSX.Element {
               </button>
             </div>
           )
-          : <NavLink to="/login">Login</NavLink>}
+          : <NavLink to={`/${componentsRoots.LOGIN}`}>Login</NavLink>}
       </div>
     </header>
   );

@@ -1,4 +1,4 @@
-export enum ApiUrls {
+export enum apiUrls {
     AUTH = 'auth',
     PROFILE = 'profile',
     STATUS = 'status',

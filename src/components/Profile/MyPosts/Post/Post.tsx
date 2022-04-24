@@ -1,16 +1,15 @@
 import React from 'react';
 
+import { picturesUrls } from '../../../../constants/picturesUrls';
+
 import { PostProps } from './types';
 
 import s from './Post.module.css';
 
 function Post({ postContent, likeCount }: PostProps): JSX.Element {
-  const imageUrl = 'https://cdn4.iconfinder.com/'
-  + 'data/icons/web-app-flat-circular-icons-set/64/Iconos_Redondos_Flat_Usuario_Icn-512.png';
-
   return (
     <div className={s.item}>
-      <img src={imageUrl} alt="" />
+      <img src={picturesUrls.DEFAULT_AVATAR_ICON} alt="" />
       <div>{postContent}</div>
       <div>
         <span>

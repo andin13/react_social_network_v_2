@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { componentsRoots } from '../../constants/componentsRoots';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { usersSlice } from '../../toolkitRedux/slices/users/slice';
 import { requestUsersThunk, updateUsersThunk } from '../../toolkitRedux/slices/users/thunks';
@@ -47,7 +48,7 @@ function Users(): JSX.Element {
         totalItemsCount={totalUsersCount}
         pageSize={pageSize}
         currentPage={currentPage}
-        baseUrl="/users/"
+        baseUrl={`/${componentsRoots.USERS}/`}
         onPageChanged={onPageChanged}
         portionSize={10}
       />
