@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { followThunk, unfollowThunk } from '../../../toolkitRedux/reducers/users/thunks';
-import { usersSlice } from '../../../toolkitRedux/reducers/users/UsersSlice';
+import { usersSlice } from '../../../toolkitRedux/slices/users/slice';
+import { followThunk, unfollowThunk } from '../../../toolkitRedux/slices/users/thunks';
 
 import { UserProps } from './types';
 

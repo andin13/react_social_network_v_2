@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 
-import { loginThunk } from '../../../toolkitRedux/reducers/auth/thunks';
+import { loginThunk } from '../../../toolkitRedux/slices/auth/thunks';
 
 import s from '../Login.module.css';
 

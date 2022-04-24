@@ -47,4 +47,9 @@ export const usersSlice = createSlice({
   },
 });
 
-export default usersSlice.reducer;
+const { actions, reducer } = usersSlice;
+export const {
+  followSuccess, setPage, setTotalUsersCount, setUsers,
+  toggleIsFetching, toggleIsFollowingProgress, unfollowSuccess,
+} = actions;
+export default reducer;

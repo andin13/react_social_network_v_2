@@ -4,7 +4,7 @@ import React, {
 } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { updateStatusThunk } from '../../../../toolkitRedux/reducers/profile/thunks';
+import { updateStatusThunk } from '../../../../toolkitRedux/slices/profile/thunks';
 
 import { ProfileStatusProps } from './types';
 

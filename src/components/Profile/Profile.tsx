@@ -6,7 +6,7 @@ import { useTypedSelector } from '../../hooks/useTypedSelector';
 import {
   getProfileThunk, getStatusThunk,
   savePhotoThunk,
-} from '../../toolkitRedux/reducers/profile/thunks';
+} from '../../toolkitRedux/slices/profile/thunks';
 
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';

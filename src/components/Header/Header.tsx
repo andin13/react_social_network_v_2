@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { logoutThunk } from '../../toolkitRedux/reducers/auth/thunks';
+import { logoutThunk } from '../../toolkitRedux/slices/auth/thunks';
 
 import s from './Header.module.css';
 

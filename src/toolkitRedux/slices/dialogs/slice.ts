@@ -33,4 +33,6 @@ export const dialogsSlice = createSlice({
   },
 });
 
-export default dialogsSlice.reducer;
+const { actions, reducer } = dialogsSlice;
+export const { addMessage } = actions;
+export default reducer;

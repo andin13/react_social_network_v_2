@@ -2,13 +2,13 @@ import { authAPI, ResultCodes } from '../../../api/api';
 import { IUser } from '../../../commonTypes/IUser';
 import { AppDispatch } from '../../store';
 
-import { authSlice } from './AuthSlice';
+import { logout, setUserData } from './slice';
 
 export const authMeThunk = () => async (dispatch: AppDispatch) => {
   const data = await authAPI.authMe();
   if (data.resultCode === ResultCodes.Success) {
     const { id, login, email }: IUser = data.data;
-    dispatch(authSlice.actions.setUserData({ id, email, login }));
+    dispatch(setUserData({ id, email, login }));
   }
 };
 
@@ -26,6 +26,6 @@ export const loginThunk = (
 export const logoutThunk = () => async (dispatch: AppDispatch) => {
   const data = await authAPI.logout();
   if (data.resultCode === 0) {
-    dispatch(authSlice.actions.logout());
+    dispatch(logout());
   }
 };

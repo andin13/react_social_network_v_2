@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 
 import { useActionsAndThunks } from '../../../hooks/useActionsAndThunks';
-import { dialogsSlice } from '../../../toolkitRedux/reducers/dialogs/DialogsSlice';
+import { dialogsSlice } from '../../../toolkitRedux/slices/dialogs/slice';
 
 import { FormValues } from './types';
 

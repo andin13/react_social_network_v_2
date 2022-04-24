@@ -9,7 +9,7 @@ import Navbar from '../components/Navbar/Navbar';
 import News from '../components/News/News';
 import Settings from '../components/Settings/Settings';
 import { useTypedSelector } from '../hooks/useTypedSelector';
-import { initializeAppThunk } from '../toolkitRedux/reducers/app/thunks';
+import { initializeAppThunk } from '../toolkitRedux/slices/app/thunks';
 
 import './App.css';
 

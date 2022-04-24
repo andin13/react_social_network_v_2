@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 
-import AppReducer from './reducers/app/AppSlice';
-import AuthReducer from './reducers/auth/AuthSlice';
-import DialogsReducer from './reducers/dialogs/DialogsSlice';
-import ProfileReducer from './reducers/profile/ProfileSlice';
-import UsersReducer from './reducers/users/UsersSlice';
+import AppReducer from './slices/app/slice';
+import AuthReducer from './slices/auth/slice';
+import DialogsReducer from './slices/dialogs/slice';
+import ProfileReducer from './slices/profile/slice';
+import UsersReducer from './slices/users/slice';
 
 const rootReducer = combineReducers({
   AppReducer,
@@ -17,6 +17,7 @@ const rootReducer = combineReducers({
 
 export const setupStore = () => configureStore({
   reducer: rootReducer,
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

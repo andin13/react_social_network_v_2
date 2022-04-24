@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { profileSlice } from '../../../toolkitRedux/reducers/profile/ProfileSlice';
+import { profileSlice } from '../../../toolkitRedux/slices/profile/slice';
 
 import Post from './Post/Post';
 import PostForm from './PostForm/PostForm';

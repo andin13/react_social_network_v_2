@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { requestUsersThunk, updateUsersThunk } from '../../toolkitRedux/reducers/users/thunks';
-import { usersSlice } from '../../toolkitRedux/reducers/users/UsersSlice';
+import { usersSlice } from '../../toolkitRedux/slices/users/slice';
+import { requestUsersThunk, updateUsersThunk } from '../../toolkitRedux/slices/users/thunks';
 import Paginator from '../common/Paginator/Paginator';
 import Preloader from '../common/Preloader/Preloader';
 

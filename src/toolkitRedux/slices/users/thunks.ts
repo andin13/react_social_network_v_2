@@ -3,27 +3,30 @@ import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { usersAPI } from '../../../api/api';
 import { AppDispatch } from '../../store';
 
-import { usersSlice } from './UsersSlice';
+import {
+  followSuccess, setTotalUsersCount, setUsers,
+  toggleIsFetching, toggleIsFollowingProgress, unfollowSuccess,
+} from './slice';
 
 export const updateUsersThunk = (
   currentPage: number,
   pageSize: number,
 ) => async (dispatch: AppDispatch) => {
-  dispatch(usersSlice.actions.toggleIsFetching(true));
+  dispatch(toggleIsFetching(true));
   const data = await usersAPI.getUsers(currentPage, pageSize);
-  dispatch(usersSlice.actions.toggleIsFetching(false));
-  dispatch(usersSlice.actions.setUsers(data.items));
+  dispatch(toggleIsFetching(false));
+  dispatch(setUsers(data.items));
 };
 
 export const requestUsersThunk = (
   currentPage: number,
   pageSize: number,
 ) => async (dispatch: AppDispatch) => {
-  dispatch(usersSlice.actions.toggleIsFetching(true));
+  dispatch(toggleIsFetching(true));
   const data = await usersAPI.getUsers(currentPage, pageSize);
-  dispatch(usersSlice.actions.toggleIsFetching(false));
-  dispatch(usersSlice.actions.setUsers(data.items));
-  dispatch(usersSlice.actions.setTotalUsersCount(data.totalCount));
+  dispatch(toggleIsFetching(false));
+  dispatch(setUsers(data.items));
+  dispatch(setTotalUsersCount(data.totalCount));
 };
 
 const followUnfollowFlow = async (
@@ -32,7 +35,7 @@ const followUnfollowFlow = async (
   apiMethod: (id: number) => Promise<any>,
   actionCreator: ActionCreatorWithPayload<number, string>,
 ) => {
-  dispatch(usersSlice.actions.toggleIsFollowingProgress({
+  dispatch(toggleIsFollowingProgress({
     isFetching: true,
     userId,
   }));
@@ -40,7 +43,7 @@ const followUnfollowFlow = async (
   if (data.resultCode === 0) {
     dispatch(actionCreator(userId));
   }
-  dispatch(usersSlice.actions.toggleIsFollowingProgress({
+  dispatch(toggleIsFollowingProgress({
     isFetching: false,
     userId,
   }));
@@ -51,7 +54,7 @@ export const followThunk = (userId: number) => async (dispatch: AppDispatch) => 
     dispatch,
     userId,
     usersAPI.follow.bind(usersAPI),
-    usersSlice.actions.followSuccess,
+    followSuccess,
   );
 };
 
@@ -60,6 +63,6 @@ export const unfollowThunk = (userId: number) => async (dispatch: AppDispatch) =
     dispatch,
     userId,
     usersAPI.unfollow.bind(usersAPI),
-    usersSlice.actions.unfollowSuccess,
+    unfollowSuccess,
   );
 };
