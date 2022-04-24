@@ -1,4 +1,5 @@
 import { IUser } from '../../commonTypes/IUser';
+import { ApiUrls } from '../../constants/ApiUrls';
 import { instance } from '../apiInstance';
 
 type AuthMeResponseType = {
@@ -22,18 +23,18 @@ export enum ResultCodes {
 
 export const authAPI = {
   authMe: async () => {
-    const response = await instance.get<AuthMeResponseType>('auth/me');
+    const response = await instance.get<AuthMeResponseType>(`${ApiUrls.AUTH}/me`);
     return response.data;
   },
   login: async (email: string, password: string, rememberMe = false) => {
     const response = await instance.post<LoginResponseType>(
-      'auth/login',
+      `${ApiUrls.AUTH}/login`,
       { email, password, rememberMe },
     );
     return response.data;
   },
   logout: async () => {
-    const response = await instance.delete('auth/login');
+    const response = await instance.delete(`${ApiUrls.AUTH}/login`);
     return response.data;
   },
 };
