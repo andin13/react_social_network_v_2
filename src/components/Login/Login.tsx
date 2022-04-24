@@ -1,14 +1,12 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-import { useActionsAndThunks } from '../../hooks/useActionsAndThunks';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 import LoginForm from './LoginForm/LoginForm';
 
 function Login(): JSX.Element {
-  const isAuth = useTypedSelector((state) => state.auth.isAuth);
-  const { loginThunk } = useActionsAndThunks();
+  const isAuth = useTypedSelector((state) => state.AuthReducer.isAuth);
 
   if (isAuth) {
     return <Navigate to="/profile" />;
@@ -16,7 +14,7 @@ function Login(): JSX.Element {
   return (
     <div>
       <h1>LOGIN</h1>
-      <LoginForm login={loginThunk} />
+      <LoginForm />
     </div>
   );
 }

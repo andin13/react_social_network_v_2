@@ -1,4 +1,5 @@
 import React, { Suspense, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Preloader from '../components/common/Preloader/Preloader';
@@ -20,9 +21,10 @@ const Login = React.lazy(() => import('../components/Login/Login'));
 function App() {
   const initialized = useTypedSelector((state) => state.AppReducer.initialized);
   const isAuth = useTypedSelector((state) => state.AuthReducer.isAuth);
+  const dispatch = useDispatch();
 
   const initializeApp = () => {
-    initializeAppThunk();
+    dispatch(initializeAppThunk());
   };
 
   useEffect(() => initializeApp(), []);

@@ -1,12 +1,18 @@
 import React from 'react';
 import { useFormik } from 'formik';
 
-import { FormValues, MessageFormProps } from './types';
+import { useActionsAndThunks } from '../../../hooks/useActionsAndThunks';
+import { dialogsSlice } from '../../../toolkitRedux/reducers/dialogs/DialogsSlice';
+
+import { FormValues } from './types';
 
 import s from '../Dialogs.module.css';
 
-function MessageForm({ addMessage }: MessageFormProps): JSX.Element {
+function MessageForm(): JSX.Element {
   const buttonImageUrl = 'https://icon-library.com/images/chat-send-icon/chat-send-icon-1.jpg';
+
+  const dispatch = useActionsAndThunks();
+  const { addMessage } = dialogsSlice.actions;
 
   const initialValues: FormValues = {
     message: '',
@@ -15,7 +21,7 @@ function MessageForm({ addMessage }: MessageFormProps): JSX.Element {
   const formik = useFormik({
     initialValues,
     onSubmit: (values: FormValues) => {
-      addMessage(values.message);
+      dispatch(addMessage(values.message));
       formik.handleReset();
     },
   });

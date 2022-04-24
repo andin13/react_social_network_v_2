@@ -2,8 +2,9 @@
 import React, {
   ChangeEvent, useEffect, useState,
 } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { useActionsAndThunks } from '../../../../hooks/useActionsAndThunks';
+import { updateStatusThunk } from '../../../../toolkitRedux/reducers/profile/thunks';
 
 import { ProfileStatusProps } from './types';
 
@@ -12,8 +13,7 @@ import s from '../ProfileInfo.module.css';
 function ProfileStatus({ status, isOwner }: ProfileStatusProps): JSX.Element {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [localStatus, setStatus] = useState<string>(status);
-
-  const { updateStatusThunk } = useActionsAndThunks();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setStatus(status);
@@ -24,7 +24,7 @@ function ProfileStatus({ status, isOwner }: ProfileStatusProps): JSX.Element {
   };
   const deactivateEditMode = () => {
     setEditMode(false);
-    updateStatusThunk(localStatus);
+    dispatch(updateStatusThunk(localStatus));
   };
   const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
     setStatus(e.currentTarget.value);

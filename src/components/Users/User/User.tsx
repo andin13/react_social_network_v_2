@@ -1,30 +1,31 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { useActionsAndThunks } from '../../../hooks/useActionsAndThunks';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { followThunk, unfollowThunk } from '../../../toolkitRedux/reducers/users/thunks';
+import { usersSlice } from '../../../toolkitRedux/reducers/users/UsersSlice';
 
 import { UserProps } from './types';
 
 import s from '../Users.module.css';
 
 function User({ user, followingInProgress }: UserProps): JSX.Element {
-  const isAuth = useTypedSelector((state) => state.auth.isAuth);
+  const isAuth = useTypedSelector((state) => state.AuthReducer.isAuth);
+  const dispatch = useDispatch();
   const defaultUserImageUrl = 'https://cdn4.iconfinder.com/data/icons'
   + '/web-app-flat-circular-icons-set/64/Iconos_Redondos_Flat_Usuario_Icn-512.png';
 
-  const {
-    followThunk, unfollowThunk, toggleIsFollowingProgressAction,
-  } = useActionsAndThunks();
+  const { toggleIsFollowingProgress } = usersSlice.actions;
 
   const followButton = isAuth
     ? (
       <button
         disabled={followingInProgress.some((id) => id === user.id)}
         onClick={() => {
-          toggleIsFollowingProgressAction({ isFetching: true, userId: user.id });
-          if (user.followed === true) unfollowThunk(user.id);
-          else followThunk(user.id);
+          toggleIsFollowingProgress({ isFetching: true, userId: user.id });
+          if (user.followed === true) dispatch(unfollowThunk(user.id));
+          else dispatch(followThunk(user.id));
         }}
         type="button"
       >

@@ -1,7 +1,7 @@
-import { ProfileAction } from '../../../../redux/profile/types';
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
 export interface PostFormProps {
-    addPost: (payload: string) => ProfileAction;
+    addPost: ActionCreatorWithPayload<string, string>;
 }
 
 export interface FormValues {

@@ -1,11 +1,14 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 
-import { LoginFormProps } from './types';
+import { loginThunk } from '../../../toolkitRedux/reducers/auth/thunks';
 
 import s from '../Login.module.css';
 
-function LoginForm({ login }: LoginFormProps): JSX.Element {
+function LoginForm(): JSX.Element {
+  const dispatch = useDispatch();
+
   return (
     <Formik
       initialValues={{
@@ -13,7 +16,7 @@ function LoginForm({ login }: LoginFormProps): JSX.Element {
         password: '',
         rememberMe: true,
       }}
-      onSubmit={(values) => login(values.login, values.password, values.rememberMe)}
+      onSubmit={(values) => dispatch(loginThunk(values.login, values.password, values.rememberMe))}
     >
       <Form>
         <div className={s.formItem}>

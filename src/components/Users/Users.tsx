@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useActionsAndThunks } from '../../hooks/useActionsAndThunks';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { requestUsersThunk, updateUsersThunk } from '../../toolkitRedux/reducers/users/thunks';
+import { usersSlice } from '../../toolkitRedux/reducers/users/UsersSlice';
 import Paginator from '../common/Paginator/Paginator';
 import Preloader from '../common/Preloader/Preloader';
 
@@ -13,28 +15,27 @@ type useParamsType = {
 }
 
 function Users(): JSX.Element {
-  const users = useTypedSelector((state) => state.users.users);
-  const pageSize = useTypedSelector((state) => state.users.pageSize);
-  const totalUsersCount = useTypedSelector((state) => state.users.totalUsersCount);
-  const followingInProgress = useTypedSelector((state) => state.users.followingInProgress);
-  const isFetching = useTypedSelector((state) => state.users.isFetching);
+  const users = useTypedSelector((state) => state.UsersReducer.users);
+  const pageSize = useTypedSelector((state) => state.UsersReducer.pageSize);
+  const totalUsersCount = useTypedSelector((state) => state.UsersReducer.totalUsersCount);
+  const followingInProgress = useTypedSelector((state) => state.UsersReducer.followingInProgress);
+  const isFetching = useTypedSelector((state) => state.UsersReducer.isFetching);
+  const dispatch = useDispatch();
   const { currentPageUrl } = useParams<useParamsType>();
   let currentPage = 1;
   if (currentPageUrl) {
     currentPage = +currentPageUrl;
   }
 
-  const {
-    setPageAction, requestUsersThunk, updateUsersThunk,
-  } = useActionsAndThunks();
+  const { setPage } = usersSlice.actions;
 
   const onPageChanged = (pageNumber: number) => {
-    updateUsersThunk(pageNumber, pageSize);
-    setPageAction(+pageNumber);
+    dispatch(updateUsersThunk(pageNumber, pageSize));
+    setPage(+pageNumber);
   };
 
   const requestUsers = () => {
-    requestUsersThunk(currentPage, pageSize);
+    dispatch(requestUsersThunk(currentPage, pageSize));
   };
 
   useEffect(() => requestUsers(), []);

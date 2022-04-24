@@ -1,7 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-import { useActionsAndThunks } from '../../hooks/useActionsAndThunks';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 import DialogItem from './DialogItem/DialogItem';
@@ -11,9 +10,8 @@ import MessageForm from './MessageForm/MessageForm';
 import s from './Dialogs.module.css';
 
 function Dialogs(): JSX.Element {
-  const dialogsPage = useTypedSelector((state) => state.dialogs);
-  const { addMessageAction } = useActionsAndThunks();
-  const isAuth = useTypedSelector((state) => state.auth.isAuth);
+  const dialogsPage = useTypedSelector((state) => state.DialogsReducer);
+  const isAuth = useTypedSelector((state) => state.AuthReducer.isAuth);
 
   const dialogsElements = dialogsPage.dialogs.map((d) => (
     <DialogItem
@@ -41,7 +39,7 @@ function Dialogs(): JSX.Element {
         <div className={s.messages}>
           {messagesElements}
         </div>
-        <MessageForm addMessage={addMessageAction} />
+        <MessageForm />
       </div>
     </div>
   );

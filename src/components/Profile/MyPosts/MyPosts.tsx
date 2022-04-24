@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useActionsAndThunks } from '../../../hooks/useActionsAndThunks';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { profileSlice } from '../../../toolkitRedux/reducers/profile/ProfileSlice';
 
 import Post from './Post/Post';
 import PostForm from './PostForm/PostForm';
@@ -9,8 +9,8 @@ import PostForm from './PostForm/PostForm';
 import s from './MyPosts.module.css';
 
 function MyPosts(): JSX.Element {
-  const posts = useTypedSelector((state) => state.profile.posts);
-  const { addPostAction, deletePostsAction } = useActionsAndThunks();
+  const posts = useTypedSelector((state) => state.ProfileReducer.posts);
+  const { addPost, deletePosts } = profileSlice.actions;
 
   const postElements = posts.map((p) => (
     <Post
@@ -23,9 +23,9 @@ function MyPosts(): JSX.Element {
   return (
     <div className={s.postBlock}>
       <h3>My posts</h3>
-      <PostForm addPost={addPostAction} />
+      <PostForm addPost={addPost} />
       <button
-        onClick={deletePostsAction}
+        onClick={deletePosts}
         type="button"
       >
         Delete all posts

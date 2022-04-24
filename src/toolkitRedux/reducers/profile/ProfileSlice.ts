@@ -25,13 +25,13 @@ export const profileSlice = createSlice({
     deletePost(state, action: PayloadAction<number>) {
       state.posts.filter((p) => p.id !== action.payload);
     },
-    setUserProfile(state, action: PayloadAction) {
+    setUserProfile(state, action: PayloadAction<any>) {
       state.profile = action.payload;
     },
     setStatus(state, action: PayloadAction<string>) {
       state.status = action.payload;
     },
-    savePhotoSuccess(state, action: PayloadAction) {
+    savePhotoSuccess(state, action: PayloadAction<any>) {
       state.profile.photos = action.payload;
     },
   },

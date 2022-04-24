@@ -1,8 +1,8 @@
-import { ThunkType } from '../../../redux/profile/thunks';
+import { AppDispatch } from '../../../toolkitRedux/store';
 
 export interface ProfileInfoProps {
     profile: any;
     status: string;
     isOwner: boolean;
-    savePhoto: (file: File) => ThunkType;
+    savePhoto: (file: File) => (dispatch: AppDispatch) => Promise<void>;
 }
