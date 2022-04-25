@@ -1,60 +1,52 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { Field, Form, Formik } from 'formik';
+import {
+  Formik,
+} from 'formik';
+import { Form, SubmitButton } from 'formik-antd';
 import { useDispatch } from 'react-redux';
 
 import { loginThunk } from '../../../toolkitRedux/slices/auth/thunks';
 
-import s from '../Login.module.css';
+import CustomFieldCreator from './CustomFieldCreator/CustomFieldCreator';
+import { FormValues } from './types';
+import { validator } from './validator';
+
+import s from './LoginForm.module.css';
 
 function LoginForm(): JSX.Element {
   const dispatch = useDispatch();
+  const initialValues: FormValues = {
+    email: '',
+    password: '',
+    rememberMe: false,
+  };
 
   return (
-    <Formik
-      initialValues={{
-        login: '',
-        password: '',
-        rememberMe: true,
-      }}
-      onSubmit={(values) => dispatch(loginThunk(values.login, values.password, values.rememberMe))}
-    >
-      <Form>
-        <div className={s.formItem}>
-          <div>
-            <label htmlFor="login">Login</label>
+    <div className={s.form}>
+      <h1 className={s.title}>Login</h1>
+      <Formik
+        initialValues={initialValues}
+        validate={(values) => validator(values)}
+        onSubmit={(values, actions) => {
+          dispatch(loginThunk(values.email, values.password, values.rememberMe));
+          actions.setSubmitting(false);
+        }}
+      >
+        <Form className={s.formContent}>
+          <CustomFieldCreator name="email" placeholder="Enter email" type="text" />
+          <CustomFieldCreator name="password" placeholder="Enter password" type="password" />
+          <div className={s.rememberMe}>
+            <label htmlFor="rememberMe">Remember me</label>
+            <CustomFieldCreator name="rememberMe" placeholder="Enter password" type="checkbox" />
           </div>
-          <div>
-            <Field
-              id="login"
-              name="login"
-            />
+          <div className={s.buttons}>
+            <SubmitButton>Submit</SubmitButton>
           </div>
-        </div>
-        <div className={s.formItem}>
-          <div>
-            <label htmlFor="password">Password</label>
-          </div>
-          <div>
-            <Field
-              type="password"
-              id="password"
-              name="password"
-            />
-          </div>
-        </div>
-        <div className={s.formItem}>
-          <Field
-            type="checkbox"
-            id="rememberMe"
-            name="rememberMe"
-          />
-          <label htmlFor="rememberMe">Remember me</label>
-        </div>
-        <div>
-          <button type="submit">Login</button>
-        </div>
-      </Form>
-    </Formik>
+
+        </Form>
+      </Formik>
+    </div>
   );
 }
 

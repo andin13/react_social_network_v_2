@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 import { componentsRoutes } from '../../constants/componentsRoutes';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
-import LoginForm from './LoginForm/LoginForm';
+import LoginForm2 from './LoginForm/LoginForm';
 
 function Login(): JSX.Element {
   const isAuth = useTypedSelector((state) => state.AuthReducer.isAuth);
@@ -14,8 +14,7 @@ function Login(): JSX.Element {
   }
   return (
     <div>
-      <h1>LOGIN</h1>
-      <LoginForm />
+      <LoginForm2 />
     </div>
   );
 }
