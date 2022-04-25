@@ -8,6 +8,7 @@ import Music from '../components/Music/Music';
 import Navbar from '../components/Navbar/Navbar';
 import News from '../components/News/News';
 import Settings from '../components/Settings/Settings';
+import { componentsRoutes } from '../constants/componentsRoutes';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import { initializeAppThunk } from '../toolkitRedux/slices/app/thunks';
 
@@ -45,17 +46,17 @@ function App() {
         <div className="app-wrapper-content">
           <Suspense fallback={<Preloader />}>
             <Routes>
-              <Route path="/dialogs/*" element={<Dialogs />} />
-              <Route path="/profile" element={<Profile />}>
+              <Route path={`/${componentsRoutes.DIALOGS}/*`} element={<Dialogs />} />
+              <Route path={`/${componentsRoutes.PROFILE}/`} element={<Profile />}>
                 <Route path=":userIdUrl" element={<Profile />} />
               </Route>
-              <Route path="/users" element={<Users />}>
+              <Route path={`/${componentsRoutes.USERS}/`} element={<Users />}>
                 <Route path=":currentPageUrl" element={<Users />} />
               </Route>
-              <Route path="/news/*" element={<News />} />
-              <Route path="/music/*" element={<Music />} />
-              <Route path="/settings/*" element={<Settings />} />
-              <Route path="/login/*" element={<Login />} />
+              <Route path={`/${componentsRoutes.NEWS}/*`} element={<News />} />
+              <Route path={`/${componentsRoutes.MUSIC}/*`} element={<Music />} />
+              <Route path={`/${componentsRoutes.SETTINGS}/*`} element={<Settings />} />
+              <Route path={`/${componentsRoutes.LOGIN}/*`} element={<Login />} />
               <Route path="/" element={<Navigate to={isAuth ? '/profile' : '/login'} />} />
             </Routes>
           </Suspense>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-import { componentsRoots } from '../../constants/componentsRoots';
+import { componentsRoutes } from '../../constants/componentsRoutes';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 import DialogItem from './DialogItem/DialogItem';
@@ -29,7 +29,7 @@ function Dialogs(): JSX.Element {
   ));
 
   if (!isAuth) {
-    return <Navigate to={`/${componentsRoots.LOGIN}`} />;
+    return <Navigate to={`/${componentsRoutes.LOGIN}`} />;
   }
   return (
     <div className={s.dialogs}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { componentsRoots } from '../../../constants/componentsRoots';
+import { componentsRoutes } from '../../../constants/componentsRoutes';
 import { picturesUrls } from '../../../constants/picturesUrls';
 
 import { DialogItemProps } from './types';
@@ -14,7 +14,7 @@ function DialogItem({ name }: DialogItemProps): JSX.Element {
   return (
     <div className={s.item}>
       <img src={defaultAvatarIconUrl} alt="" />
-      <NavLink to={`/${componentsRoots.DIALOGS}/`}>{name}</NavLink>
+      <NavLink to={`/${componentsRoutes.DIALOGS}/`}>{name}</NavLink>
     </div>
   );
 }

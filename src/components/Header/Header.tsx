@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { componentsRoots } from '../../constants/componentsRoots';
+import { componentsRoutes } from '../../constants/componentsRoutes';
 import { picturesUrls } from '../../constants/picturesUrls';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { logoutThunk } from '../../toolkitRedux/slices/auth/thunks';
@@ -35,7 +35,7 @@ function Header(): JSX.Element {
               </button>
             </div>
           )
-          : <NavLink to={`/${componentsRoots.LOGIN}`}>Login</NavLink>}
+          : <NavLink to={`/${componentsRoutes.LOGIN}`}>Login</NavLink>}
       </div>
     </header>
   );

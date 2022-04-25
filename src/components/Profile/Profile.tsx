@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
 
-import { componentsRoots } from '../../constants/componentsRoots';
+import { componentsRoutes } from '../../constants/componentsRoutes';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import {
   getProfileThunk, getStatusThunk,
@@ -40,7 +40,7 @@ function Profile(): JSX.Element {
   };
 
   useEffect(() => setProfile(), [currentUsedId]);
-  if (!isAuth && !userIdUrl) return <Navigate to={`/${componentsRoots.LOGIN}`} />;
+  if (!isAuth && !userIdUrl) return <Navigate to={`/${componentsRoutes.LOGIN}`} />;
   if (profile) {
     return (
       <div className={s.profileDiv}>

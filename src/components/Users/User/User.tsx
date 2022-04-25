@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { componentsRoots } from '../../../constants/componentsRoots';
+import { componentsRoutes } from '../../../constants/componentsRoutes';
 import { picturesUrls } from '../../../constants/picturesUrls';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { usersSlice } from '../../../toolkitRedux/slices/users/slice';
@@ -39,7 +39,7 @@ function User({ user, followingInProgress }: UserProps): JSX.Element {
       <div className={s.container}>
         <div className={s.avatar}>
           <div>
-            <NavLink to={`/${componentsRoots.PROFILE}/${user.id}`}>
+            <NavLink to={`/${componentsRoutes.PROFILE}/${user.id}`}>
               <img
                 src={user.photos.small ? user.photos.small : picturesUrls.DEFAULT_AVATAR_ICON}
                 alt="img"
