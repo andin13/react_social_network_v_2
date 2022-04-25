@@ -1,25 +1,25 @@
 import { profileAPI } from '../../../api/profileAPI/profileAPI';
 import { AppDispatch } from '../../store';
 
-import { savePhotoSuccess, setStatus, setUserProfile } from './slice';
+import { profileActions } from './slice';
 
 export const getProfileThunk = (userId: number) => async (dispatch: AppDispatch) => {
   const data = await profileAPI.getProfile(userId);
-  dispatch(setUserProfile(data));
+  dispatch(profileActions.setUserProfile(data));
 };
 export const getStatusThunk = (userId: number) => async (dispatch: AppDispatch) => {
   const data = await profileAPI.getStatus(userId);
-  dispatch(setStatus(data));
+  dispatch(profileActions.setStatus(data));
 };
 export const updateStatusThunk = (status: string) => async (dispatch: AppDispatch) => {
   const response = await profileAPI.updateStatus(status);
   if (response?.data.resultCode === 0) {
-    dispatch(setStatus(status));
+    dispatch(profileActions.setStatus(status));
   }
 };
 export const savePhotoThunk = (file: File) => async (dispatch: AppDispatch) => {
   const response = await profileAPI.savePhoto(file);
   if (response.data.resultCode === 0) {
-    dispatch(savePhotoSuccess(response.data.data.photos));
+    dispatch(profileActions.savePhotoSuccess(response.data.data.photos));
   }
 };

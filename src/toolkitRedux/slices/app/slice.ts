@@ -17,5 +17,5 @@ export const appSlice = createSlice({
 });
 
 const { actions, reducer } = appSlice;
-export const { initializedSuccess } = actions;
+export const appActions = actions;
 export default reducer;

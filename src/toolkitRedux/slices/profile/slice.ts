@@ -38,7 +38,5 @@ export const profileSlice = createSlice({
 });
 
 const { actions, reducer } = profileSlice;
-export const {
-  addPost, deletePosts, deletePost, setUserProfile, setStatus, savePhotoSuccess,
-} = actions;
+export const profileActions = actions;
 export default reducer;
