@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { profileSlice } from '../../../toolkitRedux/slices/profile/slice';
@@ -11,6 +12,8 @@ import s from './MyPosts.module.css';
 function MyPosts(): JSX.Element {
   const posts = useTypedSelector((state) => state.ProfileReducer.posts);
   const { addPost, deletePosts } = profileSlice.actions;
+  const dispatch = useDispatch();
+  const deletePostsButton = () => dispatch(deletePosts());
 
   const postElements = posts.map((p) => (
     <Post
@@ -25,7 +28,7 @@ function MyPosts(): JSX.Element {
       <h3>My posts</h3>
       <PostForm addPost={addPost} />
       <button
-        onClick={deletePosts}
+        onClick={deletePostsButton}
         type="button"
       >
         Delete all posts

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { IUserItem } from '../../../commonTypes/IUserItem';
 import { updateObjectInArray } from '../../../utils/object-helpers';
 
 import { ToggleIsFollowingProgressPayload, UsersState } from './types';
@@ -23,7 +24,7 @@ export const usersSlice = createSlice({
     unfollowSuccess(state, action: PayloadAction<number>) {
       state.users = updateObjectInArray(state.users, action.payload, 'id', { followed: false });
     },
-    setUsers(state, action: PayloadAction<Array<any>>) {
+    setUsers(state, action: PayloadAction<Array<IUserItem>>) {
       state.users = action.payload;
     },
     setPage(state, action: PayloadAction<number>) {

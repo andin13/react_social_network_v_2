@@ -1,16 +1,18 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
 
 import { FormValues, PostFormProps } from './types';
 
 import s from '../MyPosts.module.css';
 
 function PostForm({ addPost }: PostFormProps): JSX.Element {
+  const dispatch = useDispatch();
   const initialValues: FormValues = {
     post: '',
   };
   const onSubmit = (values: FormValues) => {
-    addPost(values.post);
+    dispatch(addPost(values.post));
   };
   const formik = useFormik({
     initialValues,

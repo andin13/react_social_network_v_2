@@ -1,8 +1,7 @@
-import { AppDispatch } from '../../../toolkitRedux/store';
+import { IProfile } from '../../../commonTypes/IProfile';
 
 export interface ProfileInfoProps {
-    profile: any;
+    profile: IProfile;
     status: string;
     isOwner: boolean;
-    savePhoto: (file: File) => (dispatch: AppDispatch) => Promise<void>;
 }

@@ -1,6 +1,8 @@
 import React, { ChangeEvent } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { picturesUrls } from '../../../constants/picturesUrls';
+import { savePhotoThunk } from '../../../toolkitRedux/slices/profile/thunks';
 import Preloader from '../../common/Preloader/Preloader';
 
 import ProfileStatus from './ProfileStatus/ProfileStatus';
@@ -9,13 +11,14 @@ import { ProfileInfoProps } from './types';
 import s from './ProfileInfo.module.css';
 
 function ProfileInfo({
-  profile, status, isOwner, savePhoto,
+  profile, status, isOwner,
 }: ProfileInfoProps): JSX.Element {
+  const dispatch = useDispatch();
   const userAvatar = profile.photos.large ? profile.photos.large : picturesUrls.DEFAULT_AVATAR_ICON;
 
   const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.length) {
-      savePhoto(e.target.files[0]);
+      dispatch(savePhotoThunk(e.target.files[0]));
     }
   };
 

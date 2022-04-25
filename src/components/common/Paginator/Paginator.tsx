@@ -10,7 +10,7 @@ function Paginator({
   pageSize, baseUrl, portionSize,
 }: PaginatorProps): JSX.Element {
   const pagesCount = Math.ceil(totalItemsCount / pageSize);
-  const startPortionNumber = Math.ceil(currentPage !== undefined ? currentPage : 1 / 10);
+  const startPortionNumber = Math.ceil(currentPage !== undefined ? currentPage * (1 / 10) : 1);
   const pages: Array<number> = [];
   for (let i = 1; i <= pagesCount; i += 1) {
     pages.push(i);
@@ -20,7 +20,6 @@ function Paginator({
   const [portionNumber, setPortionNumber] = useState<number>(startPortionNumber);
   const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
   const rightPortionPageNumber = portionNumber * portionSize;
-
   return (
     <div className={s.paginator}>
 

@@ -1,3 +1,4 @@
+import { ResultCodes } from '../../../api/apiInstance';
 import { profileAPI } from '../../../api/profileAPI/profileAPI';
 import { AppDispatch } from '../../store';
 
@@ -13,13 +14,13 @@ export const getStatusThunk = (userId: number) => async (dispatch: AppDispatch) 
 };
 export const updateStatusThunk = (status: string) => async (dispatch: AppDispatch) => {
   const response = await profileAPI.updateStatus(status);
-  if (response?.data.resultCode === 0) {
+  if (response.data.resultCode === ResultCodes.Success) {
     dispatch(profileActions.setStatus(status));
   }
 };
 export const savePhotoThunk = (file: File) => async (dispatch: AppDispatch) => {
   const response = await profileAPI.savePhoto(file);
-  if (response.data.resultCode === 0) {
-    dispatch(profileActions.savePhotoSuccess(response.data.data.photos));
+  if (response.resultCode === 0) {
+    dispatch(profileActions.savePhotoSuccess(response.data));
   }
 };

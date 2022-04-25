@@ -1,6 +1,7 @@
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
-import { usersAPI } from '../../../api/usersAPI/usersAPI';
+import { ResultCodes } from '../../../api/apiInstance';
+import { FollowResponseType, UnfollowResponseType, usersAPI } from '../../../api/usersAPI/usersAPI';
 import { AppDispatch } from '../../store';
 
 import { usersActions } from './slice';
@@ -29,7 +30,7 @@ export const requestUsersThunk = (
 const followUnfollowFlow = async (
   dispatch: AppDispatch,
   userId: number,
-  apiMethod: (id: number) => Promise<any>,
+  apiMethod: (id: number) => Promise<FollowResponseType | UnfollowResponseType>,
   actionCreator: ActionCreatorWithPayload<number, string>,
 ) => {
   dispatch(usersActions.toggleIsFollowingProgress({
@@ -37,7 +38,7 @@ const followUnfollowFlow = async (
     userId,
   }));
   const data = await apiMethod(userId);
-  if (data.resultCode === 0) {
+  if (data.resultCode === ResultCodes.Success) {
     dispatch(actionCreator(userId));
   }
   dispatch(usersActions.toggleIsFollowingProgress({

@@ -6,7 +6,6 @@ import { componentsRoots } from '../../constants/componentsRoots';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import {
   getProfileThunk, getStatusThunk,
-  savePhotoThunk,
 } from '../../toolkitRedux/slices/profile/thunks';
 
 import MyPosts from './MyPosts/MyPosts';
@@ -26,11 +25,11 @@ function Profile(): JSX.Element {
   const dispatch = useDispatch();
   const { userIdUrl } = useParams<useParamsType>();
   let currentUsedId = 0;
-  if (userIdUrl) {
-    currentUsedId = +userIdUrl;
-  }
   if (userId) {
     currentUsedId = userId;
+  }
+  if (userIdUrl) {
+    currentUsedId = +userIdUrl;
   }
 
   const setProfile = () => {
@@ -48,7 +47,6 @@ function Profile(): JSX.Element {
         <ProfileInfo
           profile={profile}
           isOwner={!userIdUrl}
-          savePhoto={dispatch(savePhotoThunk)}
           status={status}
         />
         <MyPosts />

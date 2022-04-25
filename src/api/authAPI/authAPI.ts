@@ -1,25 +1,25 @@
 import { IUser } from '../../commonTypes/IUser';
 import { apiUrls } from '../../constants/apiUrls';
-import { instance } from '../apiInstance';
+import { instance, ResultCodes } from '../apiInstance';
 
 type AuthMeResponseType = {
-    data: IUser;
-    resultCode: ResultCodes;
-    messages: Array<string>
-  }
+  data: IUser;
+  resultCode: ResultCodes;
+  messages: Array<string>
+}
 
 type LoginResponseType = {
-    data: {
-      userId: number;
-    };
-    resultCode: ResultCodes;
-    messages: Array<string>
-  }
+  data: {
+    userId: number;
+  };
+  resultCode: ResultCodes;
+  messages: Array<string>
+}
 
-export enum ResultCodes {
-    Success = 0,
-    Error = 1
-  }
+type LogoutResponseType = {
+  resultCode: ResultCodes;
+  messages: Array<string>
+}
 
 export const authAPI = {
   authMe: async () => {
@@ -34,7 +34,7 @@ export const authAPI = {
     return response.data;
   },
   logout: async () => {
-    const response = await instance.delete(`${apiUrls.AUTH}/login`);
+    const response = await instance.delete<LogoutResponseType>(`${apiUrls.AUTH}/login`);
     return response.data;
   },
 };

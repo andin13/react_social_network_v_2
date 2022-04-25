@@ -1,4 +1,5 @@
-import { authAPI, ResultCodes } from '../../../api/authAPI/authAPI';
+import { ResultCodes } from '../../../api/apiInstance';
+import { authAPI } from '../../../api/authAPI/authAPI';
 import { IUser } from '../../../commonTypes/IUser';
 import { AppDispatch } from '../../store';
 
@@ -25,7 +26,7 @@ export const loginThunk = (
 
 export const logoutThunk = () => async (dispatch: AppDispatch) => {
   const data = await authAPI.logout();
-  if (data.resultCode === 0) {
+  if (data.resultCode === ResultCodes.Success) {
     dispatch(authActions.logout());
   }
 };
