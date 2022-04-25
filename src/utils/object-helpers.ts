@@ -1,7 +1,9 @@
+import { IUserItem } from '../commonTypes/IUserItem';
+
 export const updateObjectInArray = (
-  items: any[],
+  items: Array<IUserItem>,
   itemId: number,
-  objPropName: string,
+  objPropName: 'id',
   newObjProps: {
     followed: boolean;
   },

@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import {
+  Field,
   Formik,
 } from 'formik';
 import { Form, SubmitButton } from 'formik-antd';
@@ -38,7 +39,13 @@ function LoginForm(): JSX.Element {
           <CustomFieldCreator name="password" placeholder="Enter password" type="password" />
           <div className={s.rememberMe}>
             <label htmlFor="rememberMe">Remember me</label>
-            <CustomFieldCreator name="rememberMe" placeholder="Enter password" type="checkbox" />
+            <Field
+              className={s.field}
+              id="rememberMe"
+              name="rememberMe"
+              placeholder="Enter password"
+              type="checkbox"
+            />
           </div>
           <div className={s.buttons}>
             <SubmitButton>Submit</SubmitButton>
