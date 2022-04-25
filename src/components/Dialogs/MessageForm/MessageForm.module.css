@@ -1,0 +1,19 @@
+.enterArea {
+    display: grid;
+    border-radius: 10px;
+    margin: 10px;
+    grid-template-columns: 9fr 1fr;
+    background-color: rgb(237, 231, 255);
+    box-shadow: 0 0 5px rgb(168, 148, 230);
+}
+
+.enterArea button {
+    outline: none;
+    resize: none;
+    border-style: none;
+    background: transparent;
+}
+
+.enterArea button img {
+    width: 30%;
+}

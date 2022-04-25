@@ -1,0 +1,15 @@
+.field {
+    width: 100%;
+    overflow-y: scroll;
+    outline: none;
+    border-style: none;
+    background: transparent;
+    color: blueviolet;
+    padding: 10px;
+    font-family: sans-serif;
+    scrollbar-width: none;
+}
+
+.error {
+    color: red;
+}

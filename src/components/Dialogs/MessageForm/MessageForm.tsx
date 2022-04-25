@@ -1,47 +1,45 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { useFormik } from 'formik';
+import {
+  Formik,
+} from 'formik';
+import { Form } from 'formik-antd';
+import { useDispatch } from 'react-redux';
 
 import { picturesUrls } from '../../../constants/picturesUrls';
-import { useActionsAndThunks } from '../../../hooks/useActionsAndThunks';
-import { dialogsSlice } from '../../../toolkitRedux/slices/dialogs/slice';
+import { dialogsActions } from '../../../toolkitRedux/slices/dialogs/slice';
 
+import CustomFieldCreator from './CustomFieldCreator/CustomFieldCreator';
 import { FormValues } from './types';
+import { validator } from './validator';
 
-import s from '../Dialogs.module.css';
+import s from './MessageForm.module.css';
 
 function MessageForm(): JSX.Element {
-  const dispatch = useActionsAndThunks();
-  const { addMessage } = dialogsSlice.actions;
-
+  const dispatch = useDispatch();
+  const { addMessage } = dialogsActions;
   const initialValues: FormValues = {
     message: '',
   };
 
-  const formik = useFormik({
-    initialValues,
-    onSubmit: (values: FormValues) => {
-      dispatch(addMessage(values.message));
-      formik.handleReset();
-    },
-  });
-
   return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
-        <div className={s.enterArea}>
-          <textarea
-            placeholder="Enter your message"
-            id="message"
-            name="message"
-            onChange={formik.handleChange}
-            value={formik.values.message}
-          />
-          <button type="submit">
-            <img src={picturesUrls.BUTTON_IMAGE} alt="" />
-          </button>
-        </div>
-      </form>
-    </div>
+    <Formik
+      initialValues={initialValues}
+      validate={(values) => validator(values)}
+      onSubmit={(values, actions) => {
+        dispatch(addMessage(values.message));
+        actions.setSubmitting(false);
+      }}
+    >
+
+      <Form className={s.enterArea}>
+        <CustomFieldCreator name="message" placeholder="Enter your message" type="message" />
+        <button type="submit">
+          <img src={picturesUrls.BUTTON_IMAGE} alt="" />
+        </button>
+      </Form>
+
+    </Formik>
   );
 }
 
