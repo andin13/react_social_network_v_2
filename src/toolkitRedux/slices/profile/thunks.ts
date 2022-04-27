@@ -1,5 +1,5 @@
-import { ResultCodes } from '../../../api/apiInstance';
 import { profileAPI } from '../../../api/profileAPI/profileAPI';
+import { ResultCodes } from '../../../constants/resultCodes';
 import { AppDispatch } from '../../store';
 
 import { profileActions } from './slice';

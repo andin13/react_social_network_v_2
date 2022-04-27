@@ -1,24 +1,7 @@
-import { IUserItem } from '../../commonTypes/IUserItem';
 import { apiUrls } from '../../constants/apiUrls';
-import { instance, ResultCodes } from '../apiInstance';
+import { instance } from '../apiInstance';
 
-type GetUsersResponseType = {
-  items: Array<IUserItem>;
-  totalCount: number;
-  error: string
-}
-
-export type FollowResponseType = {
-  data: null;
-  resultCode: ResultCodes;
-  messages: Array<string>
-}
-
-export type UnfollowResponseType = {
-  data: null;
-  resultCode: ResultCodes;
-  messages: Array<string>
-}
+import { FollowResponseType, GetUsersResponseType, UnfollowResponseType } from './types';
 
 export const usersAPI = {
   getUsers: async (currentPage: number, pageSize = 10) => {

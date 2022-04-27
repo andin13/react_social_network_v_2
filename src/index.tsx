@@ -4,23 +4,30 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import App from './app/App';
-// import { store } from './redux/store';
 import { setupStore } from './toolkitRedux/store';
 
 import './index.css';
 
 const store = setupStore();
 
-const root = createRoot(
-  document.getElementById('root') as HTMLElement,
-);
+const rootElement = document.getElementById('root');
 
-root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>,
-);
+if (!rootElement) {
+  throw new Error('Failed to find the root element');
+}
+
+const root = createRoot(rootElement);
+
+function AppContainer() {
+  return (
+    <React.StrictMode>
+      <BrowserRouter>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </BrowserRouter>
+    </React.StrictMode>
+  );
+}
+
+root.render(<AppContainer />);

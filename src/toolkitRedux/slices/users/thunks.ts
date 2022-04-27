@@ -1,7 +1,8 @@
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 
-import { ResultCodes } from '../../../api/apiInstance';
-import { FollowResponseType, UnfollowResponseType, usersAPI } from '../../../api/usersAPI/usersAPI';
+import { FollowResponseType, UnfollowResponseType } from '../../../api/usersAPI/types';
+import { usersAPI } from '../../../api/usersAPI/usersAPI';
+import { ResultCodes } from '../../../constants/resultCodes';
 import { AppDispatch } from '../../store';
 
 import { usersActions } from './slice';

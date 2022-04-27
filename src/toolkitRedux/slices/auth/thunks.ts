@@ -1,6 +1,6 @@
-import { ResultCodes } from '../../../api/apiInstance';
 import { authAPI } from '../../../api/authAPI/authAPI';
 import { IUser } from '../../../commonTypes/IUser';
+import { ResultCodes } from '../../../constants/resultCodes';
 import { AppDispatch } from '../../store';
 
 import { authActions } from './slice';

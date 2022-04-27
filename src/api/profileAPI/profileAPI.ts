@@ -1,19 +1,8 @@
-import { IPhotos } from '../../commonTypes/IPhotos';
 import { IProfile } from '../../commonTypes/IProfile';
 import { apiUrls } from '../../constants/apiUrls';
-import { instance, ResultCodes } from '../apiInstance';
+import { instance } from '../apiInstance';
 
-type UpdateStatusResponseType = {
-  data: null;
-  resultCode: ResultCodes;
-  messages: Array<string>
-}
-
-type SavePhotoResponseType = {
-  data: IPhotos;
-  resultCode: ResultCodes;
-  messages: Array<string>
-}
+import { SavePhotoResponseType, UpdateStatusResponseType } from './types';
 
 export const profileAPI = {
   getProfile: async (userId: number) => {

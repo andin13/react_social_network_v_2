@@ -1,25 +1,7 @@
-import { IUser } from '../../commonTypes/IUser';
 import { apiUrls } from '../../constants/apiUrls';
-import { instance, ResultCodes } from '../apiInstance';
+import { instance } from '../apiInstance';
 
-type AuthMeResponseType = {
-  data: IUser;
-  resultCode: ResultCodes;
-  messages: Array<string>
-}
-
-type LoginResponseType = {
-  data: {
-    userId: number;
-  };
-  resultCode: ResultCodes;
-  messages: Array<string>
-}
-
-type LogoutResponseType = {
-  resultCode: ResultCodes;
-  messages: Array<string>
-}
+import { AuthMeResponseType, LoginResponseType, LogoutResponseType } from './types';
 
 export const authAPI = {
   authMe: async () => {

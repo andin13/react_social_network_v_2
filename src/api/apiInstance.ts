@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-export enum ResultCodes {
-  Success = 0,
-  Error = 1
-}
-
 export const instance = axios.create({
   withCredentials: true,
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
