@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
 
-import { AppDispatch } from '../toolkitRedux/store';
+import { AppDispatch } from '../redux/store';
 
 export const useActionsAndThunks = () => useDispatch<AppDispatch>();
