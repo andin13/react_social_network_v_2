@@ -2,7 +2,6 @@ import React, { ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { IProfile } from '../../../commonTypes/IProfile';
-import Preloader from '../../../components/Preloader/Preloader';
 import { picturesUrls } from '../../../constants/picturesUrls';
 import { savePhotoThunk } from '../../../redux/slices/profile/thunks';
 
@@ -28,9 +27,6 @@ function ProfileInfo({
     }
   };
 
-  if (!profile) {
-    return <Preloader />;
-  }
   return (
     <div>
       <div>
